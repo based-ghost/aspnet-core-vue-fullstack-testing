@@ -27,7 +27,7 @@ namespace FullStackTesting.Web.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-            // Register the in-memory db (Data is seeded in Main method of the Program.cs now)
+            // Register the in-memory db (Data is seeded in Main method of the Program.cs now).
             services.AddDbContext<AppDbContext>(context => context.UseInMemoryDatabase("EmployeeMemoryDB"));
 
             // Registered a scoped EmployeeRepository service (DI into EmployeeController)
