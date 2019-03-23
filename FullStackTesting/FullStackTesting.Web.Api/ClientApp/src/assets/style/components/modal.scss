@@ -1,0 +1,79 @@
+.v--modal {
+    text-align: center !important;
+    z-index: 10000 !important;
+
+    #modal_x {
+        position: absolute;
+        right: .5em;
+        cursor: pointer;
+        color: #878787;
+        font-size: 27px;
+        -webkit-transition: all 0.15s ease-in;
+        transition: all 0.15s ease-in;
+    
+        &:hover {
+            color: #434343;
+        }
+    }
+
+    .modal-title {
+        font-size: 1.25em;
+        display: block;
+        height: 10.25%;
+        margin: 0rem 2.25rem 1.25rem 2.25rem;
+        font-weight: 600;
+        color: #878787;
+        border-bottom: 1px solid #e1e1e1;
+    }
+
+    .modal-body {
+        padding-top: .2em;
+        height: 75.5%;
+        font-size: 1.1em;
+        font-weight: 400;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    .modal-dialog-buttons {
+        display: flex;
+        flex: 0 1 auto;
+        width: 100%;
+        border-top: 1px solid #e1e1e1;
+    
+        > button {
+                width: 50%;
+                background: transparent;
+                border: 0;
+                height: 52px;
+                color: #878787;
+                outline: none !important;
+                -webkit-box-shadow: none !important;
+                box-shadow: none !important;
+                -webkit-border-radius: 0px;
+                border-radius: 0px;
+                -webkit-transition: all 0.15s ease-in;
+                transition: all 0.15s ease-in;
+            
+                &:hover {
+                    color: #434343;
+                    background-color: whitesmoke;
+                }
+    
+                &:last-child {
+                    border-left: 1px solid #e1e1e1;
+                }
+        }
+    }
+}
+
+.pop-out-enter-active,
+.pop-out-leave-active {
+  transition: all 0.5s;
+}
+.pop-out-enter,
+.pop-out-leave-active {
+  opacity: 0;
+  transform: translateY(24px);
+}

@@ -1,0 +1,65 @@
+.table.is-fullwidth {
+    @media (max-width: 600px) {
+        font-size: .8rem !important;
+    }
+}
+
+.table-controls {
+    margin-bottom: 1.5rem !important;
+    
+    .subtitle {
+        margin-bottom: 0rem !important;
+
+        @media (max-width: 600px) {
+            font-size: 1rem;
+        }
+    }
+
+    a {
+        color: $green;
+        font-size: 1.25rem;
+        line-height: 1.25;
+
+        @media (max-width: 600px) {
+            font-size: 1rem;
+        }
+        
+        &:hover {
+            border-bottom: 1px solid $green;
+        }
+
+        strong {
+            color: $green;
+            margin-right: .25rem;
+        }
+    }
+}
+
+.is-pagination-group {
+    margin-top: 2rem;
+
+    > a {
+        width: 8rem;
+
+        &:nth-child(1) {
+            margin-left: auto;
+        }
+
+        &:nth-child(2) {
+            margin-right: auto;
+        }
+    }
+}
+
+.delete.is-danger {
+    background-color: rgba(255, 65, 54, .13);
+
+    &::before, 
+    &::after {
+        background-color: #FF4136;
+    }
+
+    &:hover {
+        background-color: rgba(255, 65, 54, .25);
+    }
+}

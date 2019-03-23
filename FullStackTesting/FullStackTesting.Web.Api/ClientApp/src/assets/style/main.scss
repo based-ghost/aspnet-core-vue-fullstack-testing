@@ -1,0 +1,11 @@
+﻿/* Bulma CSS */
+@import '~bulma/bulma';
+
+/* Local CSS */
+@import 'controls/dropdown.scss';
+@import 'controls/checkbox.scss';
+@import 'components/spinner.scss';
+@import 'components/table.scss';
+@import 'components/modal.scss';
+@import 'components/transitions.scss';
+@import 'base/generic.scss';
