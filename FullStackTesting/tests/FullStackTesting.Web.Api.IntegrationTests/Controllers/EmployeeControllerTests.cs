@@ -85,13 +85,12 @@ namespace FullStackTesting.Web.Api.IntegrationTests.Controllers
         public async Task CanUpdateEmployeeAsync()
         {
             // Existing Employee record to be updated
-            var updateEmployee = new Employee
-            {
+            var updateEmployee = new Employee {
                 Id = 4,
                 FirstName = "Debbie",
                 LastName = "Test",
                 Department = "Accounting", // Change from Information Technology
-                FullTime = false // Change from true
+                FullTime = false           // Change from true
             };
 
             // The endpoint or route of the controller action (UpdateEmployeeAsync) with StringContent comprised of the employee to update / id of employee to update
