@@ -5,7 +5,7 @@ Prototype application with a Vue.js client that has significant unit testing cov
 
 ## General/Technology Stack Overview
 
-- Front-end initially scaffolded with the vue-cli with the following options: ```Babel```, ```TypeScript```, ```PWA```, ```Router```, ```Vuex```, ```CSS Pre-processors (node-sass)```, ```Linter (ts-lint)```, ```Unit Testing (Jest/ts-jest)```, ```E2E Testing (Nightwatch)```
+- Front-end initially bootstrapped using the [`Vue CLI App`](https://cli.vuejs.org) with the following options: ```Babel```, ```TypeScript```, ```PWA```, ```Router```, ```Vuex```, ```CSS Pre-processors (node-sass)```, ```Linter (ts-lint)```, ```Unit Testing (Jest/ts-jest)```, ```E2E Testing (Nightwatch)```
 - Additionally I added: 
 	- [`Bulma CSS Framework`](https://bulma.io/) for modular styling 
 	- [`axios`](https://github.com/axios/axios) for REST endpoint requests
