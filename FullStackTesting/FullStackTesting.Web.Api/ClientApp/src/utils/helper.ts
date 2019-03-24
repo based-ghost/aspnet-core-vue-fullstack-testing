@@ -4,15 +4,13 @@ export const isArrayWithItems = (arr: any[] | any): boolean => {
 
 export const getObjectValues = (obj: any, path: string): any[] => {
     let vals = [];
+    const paths = (path || '').trim().split('.');
 
-    if ((path || '').trim() === '' || !obj) {
+    if (!isArrayWithItems(paths) || !obj || !Object.keys(obj).length) {
         return vals;
     }
 
-    const paths = path.split('.');
-    const shallowKeys = Object.keys(obj) || [];
-
-    shallowKeys.forEach(key => {
+    Object.keys(obj).forEach(key => {
         let subObj = obj[key];
 
         for (let i=0; i < paths.length; i++){
