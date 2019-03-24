@@ -1,5 +1,4 @@
-﻿using System;
-using VueCliMiddleware;
+﻿using VueCliMiddleware;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

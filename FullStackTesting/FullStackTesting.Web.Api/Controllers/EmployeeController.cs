@@ -55,6 +55,20 @@ namespace FullStackTesting.Web.Api.Controllers
             return CreatedAtAction(nameof(GetEmployeeByIdAsync), new { id = newEmployee.Id }, newEmployee);
         }
 
+        // PUT api/Employee/UpdateEmployeeAsync
+        [HttpPut]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult> UpdateEmployeeAsync(int id, Employee employee)
+        {
+            if (!ModelState.IsValid || !id.Equals(employee.Id))
+                return BadRequest(ModelState.GetErrorMessages());
+
+            await _employeeRepo.UpdateAsync(employee);
+
+            return NoContent();
+        }
+
         // DELETE api/Employee/DeleteEmployeeAsync?id=3
         [HttpDelete]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

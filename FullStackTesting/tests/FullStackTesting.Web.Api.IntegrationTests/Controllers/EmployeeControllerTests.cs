@@ -77,6 +77,41 @@ namespace FullStackTesting.Web.Api.IntegrationTests.Controllers
         }
 
         [Fact]
+        public async Task CanUpdateEmployeeAsync()
+        {
+            // Existing Employee record to be updated
+            var updateEmployee = new Employee {
+                Id = 4,
+                FirstName = "Debbie",
+                LastName = "Test",
+                Department = "Accounting", // Change from Information Technology
+                FullTime = false // Change from true
+            };
+
+            // The endpoint or route of the controller action (UpdateEmployeeAsync) with StringContent comprised of the employee to update / id of employee to update
+            var updateEmployeeStringContent = new StringContent(JsonConvert.SerializeObject(updateEmployee), Encoding.UTF8, "application/json");
+            var httpPutResponse = await _client.PutAsync($"/api/Employee/UpdateEmployeeAsync?id={updateEmployee.Id}", updateEmployeeStringContent);
+
+            // Must be successful
+            httpPutResponse.EnsureSuccessStatusCode();
+
+            // The endpoint or route of the controller action (GetEmployeeByIdAsync) - the employee we updated
+            var httpResponse = await _client.GetAsync($"/api/Employee/GetEmployeeByIdAsync?id={updateEmployee.Id}");
+
+            // Must be successful
+            httpResponse.EnsureSuccessStatusCode();
+
+            // Deserialize and examine results
+            var stringResponse = await httpResponse.Content.ReadAsStringAsync();
+            var employee = JsonConvert.DeserializeObject<Employee>(stringResponse);
+
+            Assert.Equal(updateEmployee.FirstName, employee.FirstName);
+            Assert.Equal(updateEmployee.LastName, employee.LastName);
+            Assert.Equal(updateEmployee.FullTime, employee.FullTime);
+            Assert.Equal(updateEmployee.Department, employee.Department);
+        }
+
+        [Fact]
         public async Task CanAddEmployeeAsync()
         {
             // New Employee record to be posted in content
