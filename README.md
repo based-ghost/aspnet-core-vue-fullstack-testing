@@ -57,7 +57,7 @@ Prototype application with a Vue.js client that has significant unit testing cov
         });
 	```
 
-## Scripts
+## Scripts (ClientApp)
 
 ### `npm install`
 
@@ -71,6 +71,14 @@ To start the app (development build), run this command.  This will:
 
 - Compile the app and run on the development server
 
+### `npm run test:unit`
+
+- This will execute your unit tests located at ```ClientApp/tests/unit``` - they should follow the naming convention ```[name].spec.ts```. I have 7 tests already written and passing in there.
+
+### `npm run test:e2e`
+
+- This will execute your end-to-end integration Nightwatch tests located at ```ClientApp/tests/e2e/specs```
+
 ### `npm run lint`
 
 - Run the linter (configured in the tslint.json file found in the root of this project)
@@ -79,3 +87,9 @@ To start the app (development build), run this command.  This will:
 
 This script will:
  - Build release Webpack bundles
+ 
+ ## xUnit.net Integration/Unit Tests (Web Api)
+
+### TODO
+
+
