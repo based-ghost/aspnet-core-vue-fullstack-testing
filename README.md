@@ -40,7 +40,7 @@ Prototype application with a Vue.js client that has significant unit testing cov
         });
 	```
 	
-	- Launch the Web Api and the Vue.js client seperately - this should be be the preferred method. First, in the ClientApp directory run the command ```npm serve``` and when it is listening successfully at the specified uri/port (http://localhost:8080), you can run it in your preferred browser, and then run the ASP.NET Core Web Api project in visual studio - the application will proxy requests to the specified uri/port - which should be set to your client uri/port.
+	- Launch the Web Api and the Vue.js client seperately - this should be be the preferred method. First, in the ClientApp directory run the command ```npm serve``` and when it is listening successfully at the specified uri/port (http://localhost:8080), you can run it in your preferred browser. Next, run the ASP.NET Core Web Api project in visual studio - the application will proxy requests to the specified uri/port - which should be set to your client uri/port.
 	
 	```csharp
 	// BOTTOM OF Startup.Configure
