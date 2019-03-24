@@ -19,9 +19,40 @@ Prototype application with a Vue.js client that has significant unit testing cov
    - [`Node.js >= v8`](https://nodejs.org/en/download/)
 2. After cloning the repo, run the command ```npm install``` in the ```ClientApp``` directory to restore all Node packages/dependencies from package.json
 3. Open the .sln solution in Visual Studio and make sure all dependencies and Nuget dependencies are installed/restored - won't hurt to rebuild the entire solution (both projects)
-4. It is setup to run one of two ways:
-	- VueCLI
-	- Seperately
+4. Two potential ways to start the entire project:
+	- I installed and configured the [`aspnetcore-vueclimiddleware`](https://github.com/EEParker/aspnetcore-vueclimiddleware) in the FullStackTesting.Web.Api project - in theory this should make things easier by allowing you to launch the Web Api and the Vue.js client from within Visual Studio by just running the project. However, in practice I found this option to be very hit or miss (mostly miss as it will fail a couple times before it works). This option is the Vue.js alternative to Angular's ```UseAngularCliServer```, which in my experience, works much better.
+	
+	```csharp
+	// BOTTOM OF Startup.Configure
+	
+	app.UseSpa(spa =>
+        {
+            spa.Options.SourcePath = _spaSourcePath;
+
+            if (env.IsDevelopment())
+            {
+                // Option 1: Run npm process with client app
+                 spa.Options.StartupTimeout = new TimeSpan(days: 0, hours: 0, minutes: 1, seconds: 30);
+                 spa.UseVueCli(npmScript: "serve", port: 8080);
+            }
+        });
+	```
+	
+	- Launch the Web Api and the Vue.js client seperately - this should be be the preferred method. First, in the ClientApp directory run the command ```npm serve``` and when it is listening successfully at the specified uri/port (http://localhost:8080), you can run it in your preferred browser, and then run the ASP.NET Core Web Api project in visual studio - the application will proxy requests to the specified uri/port - which should be set to your client uri/port.
+	```csharp
+	// BOTTOM OF Startup.Configure
+		
+	app.UseSpa(spa =>
+        {
+            spa.Options.SourcePath = _spaSourcePath;
+
+            if (env.IsDevelopment())
+            {
+                // Option 2: Serve ClientApp independently and proxy requests from ClientApp (baseUri using Vue app port):
+                spa.UseProxyToSpaDevelopmentServer("http://localhost:8080");
+            }
+        });
+	```
 
 ## Scripts
 
