@@ -15,8 +15,8 @@ Prototype application with a Vue.js client that has significant unit testing cov
 
 ## Setup
 1. Install the following (or confirm installed):
-   - [.NET Core 2.2 SDK](https://dotnet.microsoft.com/download/dotnet-core/2.2)
-   - [Node.js >= v8](https://nodejs.org/en/download/)
+   - [`.NET Core 2.2 SDK`](https://dotnet.microsoft.com/download/dotnet-core/2.2)
+   - [`Node.js >= v8`](https://nodejs.org/en/download/)
 2. After cloning the repo, run the command ```npm install``` in the ```ClientApp``` directory to restore all Node packages/dependencies from package.json
 3. Open the .sln solution in Visual Studio and make sure all dependencies and Nuget dependencies are installed/restored - won't hurt to rebuild the entire solution (both projects)
 4. It is setup to run one of two ways:
