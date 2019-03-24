@@ -28,7 +28,7 @@ namespace FullStackTesting.Web.Api.IntegrationTests.Controllers
 
             // Deserialize and examine results
             var stringResponse = await httpResponse.Content.ReadAsStringAsync();
-            var employees = JsonConvert.DeserializeObject<IEnumerable<Employee>>(stringResponse);
+            var employees = JsonConvert.DeserializeObject<List<Employee>>(stringResponse);
 
             Assert.Contains(employees, e => e.FirstName.Equals("Matt") && e.LastName.Equals("Areddia"));
             Assert.Contains(employees, e => e.FirstName.Equals("Jeremy") && e.LastName.Equals("Wu"));
@@ -71,7 +71,7 @@ namespace FullStackTesting.Web.Api.IntegrationTests.Controllers
 
             // Deserialize and examine results (should no longer contain record having Id = 1, FirstName = 'Matt', LastName = 'Areddia')
             var stringResponse = await httpResponse.Content.ReadAsStringAsync();
-            var employees = JsonConvert.DeserializeObject<IEnumerable<Employee>>(stringResponse);
+            var employees = JsonConvert.DeserializeObject<List<Employee>>(stringResponse);
 
             Assert.DoesNotContain(employees, e => e.Id.Equals(targetId));
             Assert.DoesNotContain(employees, e => e.FirstName.Equals("Jane") && e.LastName.Equals("Doe"));

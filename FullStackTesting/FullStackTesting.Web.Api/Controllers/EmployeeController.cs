@@ -21,7 +21,7 @@ namespace FullStackTesting.Web.Api.Controllers
 
         // GET api/Employee/GetAllEmployeesAsync
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<Employee>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(List<Employee>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAllEmployeesAsync()
         {
             var employees = await _employeeRepo.GetAllAsync();

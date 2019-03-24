@@ -25,7 +25,7 @@ namespace FullStackTesting.Web.Api.Extensions
                 .SetCompatibilityVersion(aspNetCoreVersion)
                 .AddJsonOptions(options => {
                     options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
-                    options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+                    options.SerializerSettings.ContractResolver = new DefaultContractResolver(); // Use this to avoid camel case names by default
                 });
 
             return services;
