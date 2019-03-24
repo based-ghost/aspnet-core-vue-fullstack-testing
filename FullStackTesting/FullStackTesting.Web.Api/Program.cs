@@ -26,7 +26,7 @@ namespace FullStackTesting.Web.Api
                 try
                 {
                     // Add testing data for memoryDB
-                    SeedData.LoadTestData(appDb);
+                    AppDbSeedData.LoadSeedData(appDb);
                 }
                 catch (Exception ex)
                 {
