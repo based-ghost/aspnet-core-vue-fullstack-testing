@@ -49,7 +49,8 @@ Prototype application with a Vue.js client that has significant unit testing cov
 
             if (env.IsDevelopment())
             {
-                // Option 2: Serve ClientApp independently and proxy requests from ClientApp (baseUri using Vue app port):
+                // Option 2: Serve ClientApp independently and proxy requests 
+		// from ClientApp (baseUri using Vue app port):
                 spa.UseProxyToSpaDevelopmentServer("http://localhost:8080");
             }
         });
