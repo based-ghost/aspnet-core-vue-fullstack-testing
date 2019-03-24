@@ -42,7 +42,7 @@ describe('VCheckbox.render.tsx (./components)', () => {
             }
         });
 
-        expect(wrapper.find('input').html()).toMatch('disabled');
+        expect(wrapper.find('input[type="checkbox"]').html()).toMatch('disabled');
     });
 
     it('emits the custom @checked event with new target value when the @change event is triggered', () => {
@@ -52,7 +52,7 @@ describe('VCheckbox.render.tsx (./components)', () => {
             }
         });
 
-        const inputNode = wrapper.find('input');
+        const inputNode = wrapper.find('input[type="checkbox"]');
         (inputNode.element as HTMLInputElement).value = 'true';
         (inputNode.element as HTMLInputElement).checked = true;
         inputNode.trigger('change');

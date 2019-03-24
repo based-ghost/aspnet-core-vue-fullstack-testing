@@ -1,4 +1,9 @@
 .table.is-fullwidth {
+    tbody > tr {
+        &:hover {
+            background-color: $color-bg-box;
+        }
+    }
     @media (max-width: 600px) {
         font-size: .8rem !important;
     }

@@ -13,7 +13,6 @@ describe('NavBar.vue (./components)', () => {
     const mountNavBar = () => {
         const localVue = createLocalVue();
         localVue.use(VueRouter);
-
         return shallowMount(NavBar, {
           localVue
         });

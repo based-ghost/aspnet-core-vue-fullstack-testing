@@ -15,7 +15,6 @@ describe('VDropdown.render.tsx (./components)', () => {
     const mountVDropdown = (options: any = null) => {
         const localVue = createLocalVue();
         localVue.use(vClickOutside);
-
         return shallowMount(VDropdown, {
           localVue,
           ...options

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using FullStackTesting.Web.Api.Models;
+using FullStackTesting.Web.Api.Extensions;
 
 namespace FullStackTesting.Web.Api.Persistence
 {
@@ -26,12 +27,12 @@ namespace FullStackTesting.Web.Api.Persistence
 
         private void AddDbGeneratedInfo()
         {
-            foreach (var entry in ChangeTracker.Entries().Where(x => x.Entity is BaseEntity && (x.State.Equals(EntityState.Added) || x.State.Equals(EntityState.Modified))))
+            var utcNowDate = DateTime.UtcNow;
+            foreach (var entry in ChangeTracker.Entries().GetAddedOrModifiedBaseEntities())
             {
+                ((BaseEntity)entry.Entity).Modified = utcNowDate;
                 if (entry.State.Equals(EntityState.Added))
-                    ((BaseEntity)entry.Entity).Created = DateTime.UtcNow;
-
-                ((BaseEntity)entry.Entity).Modified = DateTime.UtcNow;
+                    ((BaseEntity)entry.Entity).Created = utcNowDate;
             }
         }
     }

@@ -95,11 +95,6 @@ class Employee extends VuexModule implements IEmployeeState {
     public UPDATE_FULL_TIME_EMPLOYEE(value: boolean): void {
         Object.assign(this.activeEmployee, { FullTime: value });
     }
-
-    @Mutation
-    public UPDATE_EMPLOYEE_DATA(value: IEmployee[]): void {
-        this.employees = value || getEmployeesDefault();
-    }
 }
 
 export const EmployeeModule = getModule(Employee); 

@@ -13,7 +13,6 @@ describe('Home.vue (./views)', () => {
       const localVue = createLocalVue();
       localVue.use(VueRouter);
       const router = new VueRouter(routerOptions);
-
       return shallowMount(Home, {
           localVue,
           router
