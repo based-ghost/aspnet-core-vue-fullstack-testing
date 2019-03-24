@@ -29,7 +29,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="employee in employeeData" :key="employee.Id">
+              <tr v-for="employee in employeeList" :key="employee.Id">
                 <td>{{employee.Id}}</td>
                 <td>{{employee.FirstName}}</td>
                 <td>{{employee.LastName}}</td>
@@ -77,12 +77,12 @@ export default class Employees extends Vue {
     return isArrayWithItems(EmployeeModule.employees) ? EmployeeModule.employees.length : 0;
   }
 
-  get employeeData(): IEmployee[] {
+  get employeeList(): IEmployee[] {
     return EmployeeModule.employees;
   }
 
   private created(): void {
-    if (!isArrayWithItems(this.employeeData)) {
+    if (!isArrayWithItems(this.employeeList)) {
       this.handleGetEmployees();
     }
   }

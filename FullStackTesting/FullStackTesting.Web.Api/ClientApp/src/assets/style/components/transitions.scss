@@ -1,14 +1,18 @@
-﻿.fade-enter-active,
+﻿.fade-enter,
+.pop-out-enter,
+.fade-leave-to,
+.pageSlideUp-enter,
+.pageSlideUp-leave-to {
+    opacity: 0;
+}
+
+.fade-enter-active,
 .fade-leave-active {
     -webkit-transition: opacity .25s ease;
     transition: opacity .25s ease;
 }
 
-.fade-enter,
-.fade-leave-to {
-    opacity: 0;
-}
-
+.pop-out-enter-active,
 .pageSlideUp-enter-active {
     -webkit-animation: page-enter-slideUp both cubic-bezier(0.4, 0, 0, 1.5);
     animation: page-enter-slideUp both cubic-bezier(0.4, 0, 0, 1.5);
@@ -16,6 +20,7 @@
     animation-duration: .35s;
 }
 
+.pop-out-leave-active,
 .pageSlideUp-leave-active {
     -webkit-animation: page-leave-fadeOut ease;
     animation: page-leave-fadeOut ease;
