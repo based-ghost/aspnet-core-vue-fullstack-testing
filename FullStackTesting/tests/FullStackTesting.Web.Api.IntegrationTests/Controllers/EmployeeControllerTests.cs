@@ -73,8 +73,7 @@ namespace FullStackTesting.Web.Api.IntegrationTests.Controllers
             var stringResponse = await httpResponse.Content.ReadAsStringAsync();
             var employees = JsonConvert.DeserializeObject<List<Employee>>(stringResponse);
 
-            Assert.DoesNotContain(employees, e => e.Id.Equals(targetId));
-            Assert.DoesNotContain(employees, e => e.FirstName.Equals("Jane") && e.LastName.Equals("Doe"));
+            Assert.DoesNotContain(employees, e => e.Id.Equals(targetId) && e.FirstName.Equals("Jane") && e.LastName.Equals("Doe"));
         }
 
         [Fact]
