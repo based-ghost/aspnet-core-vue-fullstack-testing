@@ -88,7 +88,7 @@ To start the app (development build), run this command.  This will:
 This script will:
  - Build release Webpack bundles
  
- ## xUnit Integration/Unit Tests (.NET Core)
+ ## xUnit Integration Tests (.NET Core)
 
 ### TODO
 
