@@ -90,6 +90,9 @@ This script will:
  
  ## xUnit Integration Tests (.NET Core)
 
-### TODO
+A few of the ways to execute the tests contained within the project FullStackTestin.Web.Api.IntegrationTests:
+- Run the CLI command ```dotnet test``` from within the FullStackTesting.Web.Api.IntegrationTests folder
+- If you have the [`Open Command Line`](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.OpenCommandLine) Visual Studio extension installed you can right click FullStackTesting.Web.Api.IntegrationTests project when loaded in Visual Studio to launch the cmd/PowerShell prompt that way and proceed to run ```dotnet test```
+- From within Visual Studio (with the FullStackTesting.Web.Api.IntegrationTests project loaded) via Test/Run/[select option]
 
 
