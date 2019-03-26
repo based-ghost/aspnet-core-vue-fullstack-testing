@@ -4,6 +4,7 @@
     <transition :name="$route.meta.transitionName" mode="out-in">
       <router-view />
     </transition>
+    <vue-snotify />
   </div>
 </template>
 

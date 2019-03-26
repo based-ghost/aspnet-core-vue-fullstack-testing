@@ -61,7 +61,7 @@ import { Component, Vue } from "vue-property-decorator";
 import Spinner from "@/components/Spinner.vue";
 import AddEmployee from "@/views/AddEmployee.vue";
 import { EmployeeModule } from "@/store/modules/employee.module";
-import { isArrayWithItems } from '@/utils/helper';
+import { isArrayWithItems, alertAxiosSuccess } from '@/utils/helper';
 import { IEmployee } from '@/types';
 
 @Component({
@@ -93,12 +93,19 @@ export default class Employees extends Vue {
     }
 
     this.loading = true;
-    EmployeeModule.DeleteEmployee(employee).finally(() => {
-      this.loading = false;
-      this.$nextTick(() => {
-        EmployeeModule.GetAllEmployees();
+    EmployeeModule.DeleteEmployee(employee)
+      .then(() => {
+        setTimeout(() => {
+          this.loading = false;
+        }, 50);
+
+        EmployeeModule.GetAllEmployees().then(() => {
+          alertAxiosSuccess('Employee was deleted!', 'Success', 400);
+        });
+      })
+      .catch(() => {
+        this.loading = false;
       });
-    });
   }
 
   private handleGetEmployees(): void {
@@ -110,7 +117,7 @@ export default class Employees extends Vue {
     EmployeeModule.GetAllEmployees().finally(() => {
       setTimeout(() => {
         this.loading = false;
-      }, 40);
+      }, 50);
     });
   }
 }

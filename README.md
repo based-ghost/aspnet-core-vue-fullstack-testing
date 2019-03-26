@@ -12,6 +12,7 @@ Prototype application with a Vue.js client that has significant unit testing cov
 	- [`Bulma CSS Framework`](https://bulma.io/) for modular styling 
 	- [`axios`](https://github.com/axios/axios) for REST endpoint requests
 	- [`vuex-module-decorators`](https://github.com/championswimmer/vuex-module-decorators) which enables you to write class based vuex store modules
+    - [`vue-snotify`](https://github.com/artemsky/vue-snotify) snackbar notifications (based off the original library for Angular)
 	- [`vue-js-modal`](https://github.com/euvl/vue-js-modal) for displaying compiled templates as modal components, or the option to create modals dynamically at runtime (my preferred modal plugin for Vue.js)
 - Back-end Web API using ```ASP.NET Core 2.2``` and a seperate ```xUnit.net``` test project (for integration/unit testing of server-side code). For both Development and xUnit tests I am using the In-Memory database option with ```Entity Framework Core``` for convienence
 
@@ -22,7 +23,7 @@ Prototype application with a Vue.js client that has significant unit testing cov
 2. After cloning the repo, run the command ```npm install``` in the ```ClientApp``` directory to restore all Node packages/dependencies from package.json
 3. Open the .sln solution in Visual Studio and make sure all dependencies and Nuget dependencies are installed/restored - won't hurt to rebuild the entire solution (both projects)
 4. Two potential ways to start the entire project:
-	- I installed and configured the [`aspnetcore-vueclimiddleware`](https://github.com/EEParker/aspnetcore-vueclimiddleware) in the FullStackTesting.Web.Api project - in theory this should make things easier by allowing you to launch the Web Api and the Vue.js client from within Visual Studio by just running the project. However, in practice I found this option to be very hit or miss (mostly miss as it will fail a couple times before it works). This option is the Vue.js alternative to Angular's ```UseAngularCliServer```, which in my experience, works much better.
+	- I installed and configured the [`aspnetcore-vueclimiddleware`](https://github.com/EEParker/aspnetcore-vueclimiddleware) in the FullStackTesting.Web.Api project - in theory this should make things easier by allowing you to launch the Web Api and the Vue.js client from within Visual Studio by just running the project. However, in practice I found this option to be very hit or miss (mostly miss as it will fail a couple times before it works). This option is the Vue.js alternative to Angular's ```UseAngularCliServer```, which I've had no issues with - I may be missing some configurations somewhere.
 	
 	```csharp
 	// BOTTOM OF Startup.Configure

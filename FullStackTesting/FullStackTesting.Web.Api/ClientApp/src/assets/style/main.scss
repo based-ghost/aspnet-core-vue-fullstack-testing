@@ -1,6 +1,9 @@
 ﻿/* Bulma CSS */
 @import '~bulma/bulma';
 
+/* vue-snotify package CSS */
+@import '~vue-snotify/styles/material';
+
 /* Local CSS */
 @import 'controls/dropdown.scss';
 @import 'controls/checkbox.scss';

@@ -66,10 +66,11 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
+import { EmployeeModule } from "@/store/modules/employee.module";
 import VCheckbox from "@/components/VCheckbox.render";
 import VDropdown from "@/components/VDropdown.render";
-import { EmployeeModule } from "@/store/modules/employee.module";
 import { dropdownTestData } from '@/utils/constants';
+import { alertAxiosSuccess } from '@/utils/helper';
 import { IDropdownOption } from '@/types';
 
 @Component({
@@ -125,7 +126,9 @@ export default class AddEmployee extends Vue {
 
     EmployeeModule.AddEmployee(addEmployee).then(() => {
       this.handleModalEvent();
-      EmployeeModule.GetAllEmployees();
+      EmployeeModule.GetAllEmployees().then(() => {
+          alertAxiosSuccess('Employee was added!', 'Success', 400);
+      });
     });
   }
 

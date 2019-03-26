@@ -1,5 +1,5 @@
 ﻿import axios, { AxiosInstance } from 'axios';
-
+import { alertAxiosError } from '@/utils/helper';
 /**
  * Service API base class
  * 1: Configure axios instance
@@ -19,7 +19,7 @@ export abstract class BaseService {
                 return response;
             },
             (error) => {
-                console.error(JSON.stringify(error));
+                alertAxiosError(error);
                 return Promise.reject(error);
             }
         );
