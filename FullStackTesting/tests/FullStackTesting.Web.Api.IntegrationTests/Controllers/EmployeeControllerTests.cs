@@ -67,7 +67,7 @@ namespace FullStackTesting.Web.Api.IntegrationTests.Controllers
 
             // The endpoint or route of the controller action (AddEmployeeAsync) with StringContent comprised of the employee to add
             var addEmployeeStringContent = new StringContent(JsonConvert.SerializeObject(addEmployee), Encoding.UTF8, "application/json");
-            var httpResponse = await _client.PostAsync("/api/Employee/AddEmployeeAsync", addEmployeeStringContent);
+            var httpResponse = await _client.PostAsync($"/api/Employee/AddEmployeeAsync?id={addEmployee.Id}", addEmployeeStringContent);
 
             // Must be successful
             httpResponse.EnsureSuccessStatusCode();

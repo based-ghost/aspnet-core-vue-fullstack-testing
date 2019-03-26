@@ -16,17 +16,17 @@ class EmployeeService extends BaseService {
         return this.employeeService || (this.employeeService = new this(this.apiBaseUrl));
     }
 
-    public async addEmployeeAsync(employee: IEmployee): Promise<any> {
-        await this.$http.post('AddEmployeeAsync', employee);
+    public async getAllEmployeesAsync(): Promise<IEmployee[]> {
+        const { data } = await this.$http.get('GetAllEmployeesAsync');
+        return data as IEmployee[];
     }
 
     public async deleteEmployeeAsync(employee: IEmployee): Promise<any> {
         await this.$http.delete('DeleteEmployeeAsync', { params: { id: employee.Id } });
     }
 
-    public async getAllEmployeesAsync(): Promise<IEmployee[]> {
-        const { data } = await this.$http.get('GetAllEmployeesAsync');
-        return data as IEmployee[];
+    public async addEmployeeAsync(employee: IEmployee): Promise<any> {
+        await this.$http.post('AddEmployeeAsync', employee, { params: { id: employee.Id } });
     }
 
     public async getEmployeeByIdAsync(id: number | null = null): Promise<IEmployee> {

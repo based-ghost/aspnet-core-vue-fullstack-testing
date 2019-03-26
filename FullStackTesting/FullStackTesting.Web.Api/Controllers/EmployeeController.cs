@@ -45,14 +45,14 @@ namespace FullStackTesting.Web.Api.Controllers
         [HttpPost]
         [ProducesResponseType(typeof(Employee), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult> AddEmployeeAsync(Employee employee)
+        public async Task<ActionResult> AddEmployeeAsync(int id, Employee employee)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || !id.Equals(employee.Id))
                 return BadRequest(ModelState.GetErrorMessages());
 
-            var newEmployee = await _employeeRepo.AddAsync(employee);
+            await _employeeRepo.AddAsync(employee);
 
-            return CreatedAtAction(nameof(GetEmployeeByIdAsync), new { id = newEmployee.Id }, newEmployee);
+            return CreatedAtAction(nameof(GetEmployeeByIdAsync), new { id }, employee);
         }
 
         // PUT api/Employee/UpdateEmployeeAsync

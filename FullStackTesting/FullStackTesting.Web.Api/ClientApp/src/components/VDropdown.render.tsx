@@ -36,13 +36,14 @@ export default class VDropdown extends Vue {
                         disabled={this.disabled}
                         onKeydown={this.keyDownHandler}
                         onClick={this.toggleDropdownMenu}
-                        v-click-outside={this.hideDropdownMenu}>
+                        v-click-outside={this.hideDropdownMenu}
+                >
                     <span>{this.selectedOptionLabel || this.placeholder}</span>
                     <span class="caret-select"></span>
                 </button>
                 <div class="dropdown-menu"
-                    ref="dropdownMenu"
-                    role="menu">
+                     ref="dropdownMenu"
+                     role="menu">
                     <ul class="dropdown-content">
                         {this.options.map((option: any, index: number) => this.renderListOption(option, index))}
                     </ul>
