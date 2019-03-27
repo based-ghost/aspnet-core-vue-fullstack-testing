@@ -6,7 +6,7 @@ import store from '@/store';
 import VModal from 'vue-js-modal';
 import Snotify, { SnotifyPosition } from 'vue-snotify';
 import vClickOutside from '@/plugins/vue-click-outside';
-import './registerServiceWorker';
+import '@/registerServiceWorker';
 
 const snotifyOptions = {
   global: {
