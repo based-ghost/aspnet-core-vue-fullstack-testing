@@ -65,10 +65,10 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
-import { EmployeeModule } from "@/store/modules/employee.module";
-import VCheckbox from "@/components/VCheckbox.render";
-import VDropdown from "@/components/VDropdown.render";
+import { Component, Prop, Vue } from 'vue-property-decorator';
+import { EmployeeModule } from '@/store/modules/employee.module';
+import VCheckbox from '@/components/VCheckbox.render';
+import VDropdown from '@/components/VDropdown.render';
 import { dropdownTestData } from '@/utils/constants';
 import { alertAxiosSuccess } from '@/utils/helper';
 import { IDropdownOption } from '@/types';
@@ -81,10 +81,10 @@ import { IDropdownOption } from '@/types';
 })
 export default class AddEmployee extends Vue {
   private invalidInputs: boolean = false;
-  private readonly modalId = "add-employee";
+  private readonly modalId = 'add-employee';
   private readonly dropdownOptions: IDropdownOption[] = dropdownTestData;
 
-  @Prop({ default: "New Employee" }) private titleMsg: string;
+  @Prop({ default: 'New Employee' }) private titleMsg: string;
 
   get firstName(): string {
     return EmployeeModule.activeEmployee.FirstName;

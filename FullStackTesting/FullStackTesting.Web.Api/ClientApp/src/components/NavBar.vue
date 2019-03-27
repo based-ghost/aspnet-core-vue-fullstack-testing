@@ -7,8 +7,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import { routesConfig } from "@/router/routes";
+import { Component, Vue } from 'vue-property-decorator';
+import { routesConfig } from '@/router/routes';
 
 @Component
 export default class NavBar extends Vue {

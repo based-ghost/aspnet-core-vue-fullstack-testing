@@ -57,10 +57,10 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import Spinner from "@/components/Spinner.vue";
-import AddEmployee from "@/views/AddEmployee.vue";
-import { EmployeeModule } from "@/store/modules/employee.module";
+import { Component, Vue } from 'vue-property-decorator';
+import Spinner from '@/components/Spinner.vue';
+import AddEmployee from '@/views/AddEmployee.vue';
+import { EmployeeModule } from '@/store/modules/employee.module';
 import { isArrayWithItems, alertAxiosSuccess } from '@/utils/helper';
 import { IEmployee } from '@/types';
 
