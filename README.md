@@ -3,7 +3,7 @@ Prototype application with a Vue.js client that has significant unit testing cov
 
 ## Demo
 
-![demo](https://j.gifs.com/vllpXr.gif)
+![demo](https://j.gifs.com/Mww4wQ.gif)
 
 ## General/Technology Stack Overview
 
