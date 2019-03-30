@@ -31,34 +31,6 @@ import { npmLinksConfig } from '@/utils/constants';
 @Component
 export default class HomeContent extends Vue {
   private readonly npmLinks = npmLinksConfig;
-  @Prop({ default: "" }) private mainSubTitle: string;
+  @Prop({ default: '' }) private mainSubTitle: string;
 }
 </script>
-
-<style scoped lang="scss">
-h3 {
-  font-size: 1.4rem;
-  font-weight: 600;
-  padding-bottom: 0.5rem;
-
-  @media (max-width: 769px) {
-    font-size: 1.15rem;
-  }
-}
-.home-content > h3:not(:first-child) {
-  margin: 35px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: $green;
-  font-weight: 600;
-  text-decoration: underline;
-}
-</style>

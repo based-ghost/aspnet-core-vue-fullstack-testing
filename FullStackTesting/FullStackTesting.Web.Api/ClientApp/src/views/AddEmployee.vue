@@ -1,13 +1,13 @@
 <template>
   <modal
-    :name="modalId"
+    :name="modalIDs.ADD_EMPLOYEE"
     :width="525"
     :height="450"
     transition="pop-out"
     :draggable="false"
     :clickToClose="false"
   >
-    <div id="modal_x" @click="handleModalEvent()">&times;</div>
+    <div id="modal_x" @click="handleCloseModal()">&times;</div>
     <div class="columns modal-columns is-centered">
       <div class="column has-text-centered">
         <div class="modal-title">{{titleMsg}}</div>
@@ -56,7 +56,7 @@
           </div>
         </div>
         <div class="modal-dialog-buttons">
-          <button type="button" class="button is-block" @click="handleModalEvent()">CANCEL</button>
+          <button type="button" class="button is-block" @click="handleCloseModal()">CANCEL</button>
           <button type="button" class="button is-block" @click="handleAddEmployee()">OK</button>
         </div>
       </div>
@@ -69,7 +69,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 import { EmployeeModule } from '@/store/modules/employee.module';
 import VCheckbox from '@/components/VCheckbox.render';
 import VDropdown from '@/components/VDropdown.render';
-import { dropdownTestData } from '@/utils/constants';
+import { dropdownTestData, modalIDs } from '@/utils/constants';
 import { alertAxiosSuccess } from '@/utils/helper';
 import { IDropdownOption } from '@/types';
 
@@ -81,7 +81,7 @@ import { IDropdownOption } from '@/types';
 })
 export default class AddEmployee extends Vue {
   private invalidInputs: boolean = false;
-  private readonly modalId = 'add-employee';
+  private readonly modalIDs = modalIDs;
   private readonly dropdownOptions: IDropdownOption[] = dropdownTestData;
 
   @Prop({ default: 'New Employee' }) private titleMsg: string;
@@ -125,16 +125,16 @@ export default class AddEmployee extends Vue {
     addEmployee["Id"] = this.getNewEmployeeId();
 
     EmployeeModule.AddEmployee(addEmployee).then(() => {
-      this.handleModalEvent();
+      this.handleCloseModal();
       EmployeeModule.GetAllEmployees().then(() => {
           alertAxiosSuccess('Employee was added!', 'Success', 400);
       });
     });
   }
 
-  private handleModalEvent(): void {
+  private handleCloseModal(): void {
     EmployeeModule.ResetActiveEmployeeFields().then(() => {
-      this.$modal.hide(this.modalId);
+      this.$modal.hide(this.modalIDs.ADD_EMPLOYEE);
     });
   }
 

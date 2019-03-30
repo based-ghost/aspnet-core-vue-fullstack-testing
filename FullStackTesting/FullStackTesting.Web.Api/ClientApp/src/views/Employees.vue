@@ -11,7 +11,7 @@
               </h5>
             </div>
             <div class="control">
-              <a role="button" class="is-success" @click="$modal.show('add-employee')">
+              <a role="button" class="is-success" @click="$modal.show(modalIDs.ADD_EMPLOYEE)">
                 <strong>&#43;</strong>Employee
               </a>
             </div>
@@ -62,6 +62,7 @@ import Spinner from '@/components/Spinner.vue';
 import AddEmployee from '@/views/AddEmployee.vue';
 import { EmployeeModule } from '@/store/modules/employee.module';
 import { isArrayWithItems, alertAxiosSuccess } from '@/utils/helper';
+import { modalIDs } from '@/utils/constants';
 import { IEmployee } from '@/types';
 
 @Component({
@@ -72,6 +73,7 @@ import { IEmployee } from '@/types';
 })
 export default class Employees extends Vue {
   private loading: boolean = false;
+  private readonly modalIDs = modalIDs;
 
   get employeeCount(): number {
     return isArrayWithItems(EmployeeModule.employees) ? EmployeeModule.employees.length : 0;

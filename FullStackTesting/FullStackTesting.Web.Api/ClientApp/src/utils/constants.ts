@@ -1,4 +1,26 @@
 import { IDropdownOption } from '@/types';
+import { SnotifyPosition } from 'vue-snotify';
+
+export const modalIDs = {
+    ADD_EMPLOYEE: 'add-employee'
+};
+
+export const snotifyOptions = {
+    global: {
+      newOnTop: true,
+      maxAtPosition: 4,
+      maxOnScreen: 4,
+      oneAtTime: false,
+      preventDuplicates: false
+    },
+    toast: {
+      position: SnotifyPosition.rightTop,
+      timeout: 2000,
+      showProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true
+    }
+};
 
 export const dropdownTestData: IDropdownOption[] = [
     { value: 1, label: "Claims" },
