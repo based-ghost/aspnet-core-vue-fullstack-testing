@@ -1,5 +1,7 @@
 .table.is-fullwidth {
     tbody > tr {
+        transition: background-color .25s ease-in;
+        
         &:hover {
             background-color: $color-bg-box;
         }
@@ -66,4 +68,8 @@
     &:hover {
         background-color: rgba(255, 65, 54, .25);
     }
+}
+
+.highlight-new-row {
+    background-color: rgba(66, 185, 131, .25) !important; 
 }

@@ -29,7 +29,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="employee in employeeList" :key="employee.Id">
+              <tr v-for="employee in employeeList" :key="employee.Id" :id="`row-${employee.Id}`">
                 <td>{{employee.Id}}</td>
                 <td>{{employee.FirstName}}</td>
                 <td>{{employee.LastName}}</td>
@@ -51,7 +51,7 @@
           </p>
         </div>
       </div>
-      <AddEmployee/>
+      <AddEmployee @employeeAdded="handleSuccessfulAdd" />
     </div>
   </div>
 </template>
@@ -120,6 +120,20 @@ export default class Employees extends Vue {
       setTimeout(() => {
         this.loading = false;
       }, 50);
+    });
+  }
+
+  // Method that gets executed as callback from @employeeAdded event fired from child component AddEmployee.vue
+  // Event is fired when a new employee is successfully added - highlights the new row after the the employee rows have been rendered in DOM
+  private handleSuccessfulAdd(newEmployeeId: number): void {
+    this.$nextTick(() => {
+      const newEmployeeRow = document.getElementById(`row-${newEmployeeId}`);
+      if (newEmployeeRow) {
+        newEmployeeRow.classList.add('highlight-new-row');
+        setTimeout(() => {
+          newEmployeeRow.classList.remove('highlight-new-row');
+        }, 250);
+      }
     });
   }
 }
