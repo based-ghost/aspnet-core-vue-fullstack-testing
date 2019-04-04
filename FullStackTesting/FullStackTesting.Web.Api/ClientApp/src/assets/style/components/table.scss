@@ -4,6 +4,7 @@
             background-color: $color-bg-box;
         }
     }
+    
     @media (max-width: 600px) {
         font-size: .8rem !important;
     }
@@ -21,20 +22,9 @@
     }
 
     a {
-        color: $green;
-        font-size: 1.25rem;
-        line-height: 1.25;
-
-        @media (max-width: 600px) {
-            font-size: 1rem;
-        }
-        
-        &:hover {
-            border-bottom: 1px solid $green;
-        }
-
+        border-radius: 0px;
+               
         strong {
-            color: $green;
             margin-right: .25rem;
         }
     }
@@ -45,13 +35,22 @@
 
     > a {
         width: 8rem;
+        border-radius: 0px;
 
         &:nth-child(1) {
             margin-left: auto;
+
+            strong {
+                margin-right: .35rem;
+            }
         }
 
         &:nth-child(2) {
             margin-right: auto;
+
+            strong {
+                margin-left: .35rem;
+            }
         }
     }
 }

@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "@types/jest": "^24.0.11",
-    "@vue/cli-plugin-babel": "^3.5.3",
+    "@vue/cli-plugin-babel": "^3.5.5",
     "@vue/cli-plugin-e2e-nightwatch": "^3.5.1",
     "@vue/cli-plugin-pwa": "^3.5.1",
     "@vue/cli-plugin-typescript": "^3.5.3",
@@ -33,7 +33,7 @@
     "babel-core": "7.0.0-bridge.0",
     "node-sass": "^4.11.0",
     "sass-loader": "^7.1.0",
-    "ts-jest": "^24.0.0",
+    "ts-jest": "^24.0.1",
     "typescript": "^3.4.1",
     "vue-template-compiler": "^2.6.10",
     "vuex-module-decorators": "^0.9.8"

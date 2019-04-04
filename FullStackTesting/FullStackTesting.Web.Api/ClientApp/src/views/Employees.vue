@@ -11,7 +11,7 @@
               </h5>
             </div>
             <div class="control">
-              <a role="button" class="is-success" @click="$modal.show(modalIDs.ADD_EMPLOYEE)">
+              <a role="button" class="button is-link is-outlined" @click="$modal.show(modalIDs.ADD_EMPLOYEE)">
                 <strong>&#43;</strong>Employee
               </a>
             </div>
@@ -46,8 +46,8 @@
             </tbody>
           </table>
           <p class="buttons is-pagination-group">
-            <a class="button is-info" @click="handleGetEmployees()">Previous</a>
-            <a class="button is-info" @click="handleGetEmployees()">Next</a>
+            <a class="button is-link" @click="handleGetEmployees()"><strong>&lt;</strong>Previous</a>
+            <a class="button is-link" @click="handleGetEmployees()">Next<strong>&gt;</strong></a>
           </p>
         </div>
       </div>

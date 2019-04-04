@@ -4,26 +4,28 @@
 
     #modal_x {
         position: absolute;
+        top: .3em;
         right: .5em;
         cursor: pointer;
-        color: #878787;
+        color: #4a4a4a;
         font-size: 27px;
         -webkit-transition: all 0.15s ease-in;
         transition: all 0.15s ease-in;
     
         &:hover {
-            color: #434343;
+            color: #6C7E90;
         }
     }
 
     .modal-title {
         font-size: 1.25em;
         display: block;
-        height: 10.25%;
-        margin: 0rem 2.25rem 1.25rem 2.25rem;
+        height: 9.75%;
+        color: #4a4a4a;
         font-weight: 600;
-        color: #878787;
-        border-bottom: 1px solid #e1e1e1;
+        margin: 0 0 1.35rem 0;
+        text-transform: uppercase;
+        border-bottom: 1px solid #dbdbdb;
     }
 
     .modal-body {
@@ -40,14 +42,14 @@
         display: flex;
         flex: 0 1 auto;
         width: 100%;
-        border-top: 1px solid #e1e1e1;
+        border-top: 1px solid #dbdbdb;
     
         > button {
                 width: 50%;
                 background: transparent;
                 border: 0;
                 height: 52px;
-                color: #878787;
+                color: #2c3e50;
                 outline: none !important;
                 -webkit-box-shadow: none !important;
                 box-shadow: none !important;
@@ -57,12 +59,11 @@
                 transition: all 0.15s ease-in;
             
                 &:hover {
-                    color: #434343;
                     background-color: whitesmoke;
                 }
     
                 &:last-child {
-                    border-left: 1px solid #e1e1e1;
+                    border-left: 1px solid #dbdbdb;
                 }
         }
     }
