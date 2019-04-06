@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Net;
 using VueCliMiddleware;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
+using FullStackTesting.Web.Api.Models;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using FullStackTesting.Web.Api.Extensions;
 using FullStackTesting.Web.Api.Persistence;
@@ -53,6 +57,23 @@ namespace FullStackTesting.Web.Api
                 app.UseHttpsRedirection();
                 app.UseHsts();
             }
+
+            app.UseExceptionHandler(builder =>
+            {
+                builder.Run(async context =>
+                {
+                    var error = context.Features.Get<IExceptionHandlerFeature>();
+                    var exDetails = new ExceptionDetails((int)HttpStatusCode.InternalServerError, error?.Error.Message);
+
+                    context.Response.ContentType = "application/json";
+                    context.Response.StatusCode = exDetails.StatusCode;
+                    context.Response.Headers.Add("Access-Control-Allow-Origin", "*");
+                    context.Response.Headers.Add("Application-Error", exDetails.Message);
+                    context.Response.Headers.Add("Access-Control-Expose-Headers", "Application-Error");
+
+                    await context.Response.WriteAsync(exDetails.ToString());
+                });
+            });
 
             app.UseCors(_corsPolicyName);
             app.UseStaticFiles();
