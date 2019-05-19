@@ -67,3 +67,4 @@ C:\Users\matth_000\Desktop\aspnet-core-vue-fullstack-testing\src\FullStackTestin
 C:\Users\matth_000\Desktop\aspnet-core-vue-fullstack-testing\src\FullStackTesting.Web.Api\obj\Debug\netcoreapp2.2\FullStackTesting.Web.Api.dll
 C:\Users\matth_000\Desktop\aspnet-core-vue-fullstack-testing\src\FullStackTesting.Web.Api\obj\Debug\netcoreapp2.2\FullStackTesting.Web.Api.pdb
 C:\Users\matth_000\Desktop\aspnet-core-vue-fullstack-testing\src\FullStackTesting.Web.Api\obj\Debug\netcoreapp2.2\FullStackTesting.Web.Api.csproj.CopyComplete
+C:\Users\matth_000\Desktop\aspnet-core-vue-fullstack-testing\FullStackTesting\FullStackTesting.Web.Api\obj\Debug\netcoreapp2.2\FullStackTesting.Web.Api.csprojAssemblyReference.cache
