@@ -11,8 +11,8 @@
 using System;
 using System.Reflection;
 
-[assembly: Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryContentRootAttribute("FullStackTesting.Web.Api", "C:\\Users\\matth_000\\Desktop\\aspnet-core-vue-fullstack-testing\\FullStackTesting\\Ful" +
-    "lStackTesting.Web.Api", "FullStackTesting.Web.Api.csproj", "0")]
+[assembly: Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryContentRootAttribute("FullStackTesting.Web.Api", "C:\\Users\\matth\\Desktop\\aspnet-core-vue-fullstack-testing\\FullStackTesting\\FullSta" +
+    "ckTesting.Web.Api", "FullStackTesting.Web.Api.csproj", "0")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("FullStackTesting.Web.Api.IntegrationTests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
