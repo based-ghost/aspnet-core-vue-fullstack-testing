@@ -32,7 +32,7 @@
                 name="FirstName"
                 type="text"
                 :class="['input', { 'is-danger' : invalidInputs && !firstName }]"
-              >
+              />
             </div>
           </div>
           <div class="field">
@@ -43,7 +43,7 @@
                 name="LastName"
                 type="text"
                 :class="['input', { 'is-danger' : invalidInputs && !lastName }]"
-              >
+              />
             </div>
           </div>
           <div class="field">
@@ -65,13 +65,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
-import { EmployeeModule } from '@/store/modules/employee.module';
-import VCheckbox from '@/components/VCheckbox.render';
-import VDropdown from '@/components/VDropdown.render';
-import { dropdownTestData, modalIDs } from '@/utils/constants';
-import { alertAxiosSuccess } from '@/utils/helper';
-import { IDropdownOption } from '@/types';
+import { Component, Prop, Vue } from "vue-property-decorator";
+import { EmployeeModule } from "@/store/modules/employee.module";
+import VCheckbox from "@/components/VCheckbox.render";
+import VDropdown from "@/components/VDropdown.render";
+import { dropdownTestData, modalIDs } from "@/utils/constants";
+import { alertAxiosSuccess } from "@/utils/helper";
+import { IDropdownOption } from "@/types";
 
 @Component({
   components: {
@@ -84,7 +84,7 @@ export default class AddEmployee extends Vue {
   private readonly modalIDs = modalIDs;
   private readonly dropdownOptions: IDropdownOption[] = dropdownTestData;
 
-  @Prop({ default: 'New Employee' }) private titleMsg: string;
+  @Prop({ default: "New Employee" }) private titleMsg: string;
 
   get firstName(): string {
     return EmployeeModule.activeEmployee.FirstName;
@@ -129,8 +129,8 @@ export default class AddEmployee extends Vue {
     EmployeeModule.AddEmployee(addEmployee).then(() => {
       this.handleCloseModal();
       EmployeeModule.GetAllEmployees().then(() => {
-          setTimeout(() => this.$emit('employeeAdded', newEmployeeId), 250);
-          alertAxiosSuccess('Employee was added!', 'Success', 400);
+        setTimeout(() => this.$emit("employeeAdded", newEmployeeId), 250);
+        alertAxiosSuccess("Employee was added!", "Success", 400);
       });
     });
   }

@@ -1,4 +1,7 @@
-﻿/* Bulma CSS */
+﻿/* Custom variables/mixins imports */
+@import 'base/variables.scss';
+
+/* Bulma CSS */
 @import '~bulma/bulma';
 
 /* vue-snotify package CSS */

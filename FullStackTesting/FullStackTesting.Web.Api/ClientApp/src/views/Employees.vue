@@ -6,17 +6,22 @@
         <div class="box employee-box">
           <div class="field table-controls is-grouped">
             <div class="control is-expanded">
-              <h5 class="subtitle is-expanded">Employees:
+              <h5 class="subtitle is-expanded">
+                Employees:
                 <strong>{{employeeCount}}</strong>
               </h5>
             </div>
             <div class="control">
-              <a role="button" class="button is-link is-outlined" @click="$modal.show(modalIDs.ADD_EMPLOYEE)">
+              <a
+                role="button"
+                class="button is-link is-outlined"
+                @click="$modal.show(modalIDs.ADD_EMPLOYEE)"
+              >
                 <strong>&#43;</strong>Employee
               </a>
             </div>
           </div>
-          <Spinner :show="loading"/>
+          <Spinner :show="loading" />
           <table class="table is-fullwidth">
             <thead>
               <tr>
@@ -46,8 +51,13 @@
             </tbody>
           </table>
           <p class="buttons is-pagination-group">
-            <a class="button is-link" @click="handleGetEmployees()"><strong>&lt;</strong>Previous</a>
-            <a class="button is-link" @click="handleGetEmployees()">Next<strong>&gt;</strong></a>
+            <a class="button is-link" @click="handleGetEmployees()">
+              <strong>&lt;</strong>Previous
+            </a>
+            <a class="button is-link" @click="handleGetEmployees()">
+              Next
+              <strong>&gt;</strong>
+            </a>
           </p>
         </div>
       </div>
@@ -57,13 +67,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import Spinner from '@/components/Spinner.vue';
-import AddEmployee from '@/views/AddEmployee.vue';
-import { EmployeeModule } from '@/store/modules/employee.module';
-import { isArrayWithItems, alertAxiosSuccess } from '@/utils/helper';
-import { modalIDs } from '@/utils/constants';
-import { IEmployee } from '@/types';
+import { Component, Vue } from "vue-property-decorator";
+import Spinner from "@/components/Spinner.vue";
+import AddEmployee from "@/views/AddEmployee.vue";
+import { EmployeeModule } from "@/store/modules/employee.module";
+import { isArrayWithLength, alertAxiosSuccess } from "@/utils/helper";
+import { modalIDs } from "@/utils/constants";
+import { IEmployee } from "@/types";
 
 @Component({
   components: {
@@ -76,7 +86,9 @@ export default class Employees extends Vue {
   private readonly modalIDs = modalIDs;
 
   get employeeCount(): number {
-    return isArrayWithItems(EmployeeModule.employees) ? EmployeeModule.employees.length : 0;
+    return isArrayWithLength(EmployeeModule.employees)
+      ? EmployeeModule.employees.length
+      : 0;
   }
 
   get employeeList(): IEmployee[] {
@@ -84,7 +96,7 @@ export default class Employees extends Vue {
   }
 
   private created(): void {
-    if (!isArrayWithItems(this.employeeList)) {
+    if (!isArrayWithLength(this.employeeList)) {
       this.handleGetEmployees();
     }
   }
@@ -97,16 +109,14 @@ export default class Employees extends Vue {
     this.loading = true;
     EmployeeModule.DeleteEmployee(employee)
       .then(() => {
+        EmployeeModule.GetAllEmployees().then(() => {
+          alertAxiosSuccess("Employee was deleted!", "Success", 400);
+        });
+      })
+      .then(() => {
         setTimeout(() => {
           this.loading = false;
         }, 50);
-
-        EmployeeModule.GetAllEmployees().then(() => {
-          alertAxiosSuccess('Employee was deleted!', 'Success', 400);
-        });
-      })
-      .catch(() => {
-        this.loading = false;
       });
   }
 
@@ -129,9 +139,9 @@ export default class Employees extends Vue {
     this.$nextTick(() => {
       const newEmployeeRow = document.getElementById(`row-${newEmployeeId}`);
       if (newEmployeeRow) {
-        newEmployeeRow.classList.add('highlight-new-row');
+        newEmployeeRow.classList.add("highlight-new-row");
         setTimeout(() => {
-          newEmployeeRow.classList.remove('highlight-new-row');
+          newEmployeeRow.classList.remove("highlight-new-row");
         }, 250);
       }
     });
