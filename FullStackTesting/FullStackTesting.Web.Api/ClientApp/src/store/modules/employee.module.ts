@@ -43,42 +43,41 @@ class Employee extends VuexModule implements IEmployeeState {
     await EmployeeApi.addEmployeeAsync(employee);
   }
 
-  @MutationAction({ mutate: ["activeEmployee", "departmentObj"] })
-  public async ResetActiveEmployeeFields(): Promise<any> {
+  @MutationAction<Partial<IEmployeeState>>({ mutate: ["activeEmployee", "departmentObj"] })
+  public async ResetActiveEmployeeFields(): Promise<Partial<IEmployeeState>> {
     return {
       activeEmployee: getActiveEmployeeDefault(),
       departmentObj: getDepartmentObjDefault()
     };
   }
 
-  @MutationAction({ mutate: ["employees"] })
-  public async GetAllEmployees(): Promise<any> {
+  @MutationAction<Partial<IEmployeeState>>({ mutate: ["employees"] })
+  public async GetAllEmployees(): Promise<Partial<IEmployeeState>> {
     try {
       const employees = await EmployeeApi.getAllEmployeesAsync();
-      return {
-        employees: employees
+      return { 
+        employees 
       };
     } catch (e) {
-      return {
-        employees: getEmployeesDefault()
+      const employees = getEmployeesDefault();
+      return { 
+        employees 
       };
     }
   }
 
-  @MutationAction({ mutate: ["employees"] })
-  public async GetEmployeeById(id: number | null = null): Promise<any> {
+  @MutationAction<Partial<IEmployeeState>>({ mutate: ["employees"] })
+  public async GetEmployeeById(id: number | null = null): Promise<Partial<IEmployeeState>> {
     try {
       const employee = await EmployeeApi.getEmployeeByIdAsync(id);
-      return {
-        employees: this.employees.splice(
-          0,
-          this.employees.length,
-          employee || {}
-        )
+      const employees = this.employees.splice(0, this.employees.length, employee || {});
+      return { 
+        employees 
       };
     } catch (e) {
-      return {
-        employees: getEmployeesDefault()
+      const employees = getEmployeesDefault();
+      return { 
+        employees 
       };
     }
   }

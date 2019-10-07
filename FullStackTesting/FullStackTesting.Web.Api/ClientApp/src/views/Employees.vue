@@ -109,9 +109,10 @@ export default class Employees extends Vue {
     this.loading = true;
     EmployeeModule.DeleteEmployee(employee)
       .then(() => {
-        EmployeeModule.GetAllEmployees().then(() => {
-          alertAxiosSuccess("Employee was deleted!", "Success", 400);
-        });
+        EmployeeModule.GetAllEmployees()
+          .then(() => {
+            alertAxiosSuccess("Employee was deleted!", "Success", 400);
+          });
       })
       .then(() => {
         setTimeout(() => {
@@ -126,11 +127,12 @@ export default class Employees extends Vue {
     }
 
     this.loading = true;
-    EmployeeModule.GetAllEmployees().finally(() => {
-      setTimeout(() => {
-        this.loading = false;
-      }, 50);
-    });
+    EmployeeModule.GetAllEmployees()
+      .finally(() => {
+        setTimeout(() => {
+          this.loading = false;
+        }, 50);
+      });
   }
 
   // Method that gets executed as callback from @employeeAdded event fired from child component AddEmployee.vue

@@ -19,8 +19,8 @@ class EmployeeService extends BaseService {
   }
 
   public async getAllEmployeesAsync(): Promise<IEmployee[]> {
-    const { data } = await this.$http.get("GetAllEmployeesAsync");
-    return data as IEmployee[];
+    const { data } = await this.$http.get<IEmployee[]>("GetAllEmployeesAsync");
+    return data;
   }
 
   public async deleteEmployeeAsync(employee: IEmployee): Promise<any> {
@@ -36,8 +36,8 @@ class EmployeeService extends BaseService {
   }
 
   public async getEmployeeByIdAsync(id: number | null = null): Promise<IEmployee> {
-    const { data } = await this.$http.get("GetEmployeeByIdAsync", { params: { id: id } });
-    return data as IEmployee;
+    const { data } = await this.$http.get<IEmployee>("GetEmployeeByIdAsync", { params: { id: id } });
+    return data;
   }
 }
 

@@ -1,6 +1,6 @@
 export interface IDropdownOption {
-    value?: number;
-    label?: string;
+    readonly value?: number;
+    readonly label?: string;
 }
 
 export interface IEmployee {

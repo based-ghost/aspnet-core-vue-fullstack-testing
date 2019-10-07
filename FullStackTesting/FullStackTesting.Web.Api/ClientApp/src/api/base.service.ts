@@ -8,7 +8,7 @@ import { alertAxiosError } from "@/utils/helper";
 export abstract class BaseService {
   protected readonly $http: AxiosInstance;
 
-  protected constructor(apiBaseUrl: string, apiTimeout: number = 5000) {
+  protected constructor(apiBaseUrl: string, apiTimeout: number = 10000) {
     this.$http = axios.create({
       timeout: apiTimeout,
       baseURL: apiBaseUrl

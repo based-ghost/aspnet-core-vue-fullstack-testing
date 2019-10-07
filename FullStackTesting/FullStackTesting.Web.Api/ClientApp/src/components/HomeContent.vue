@@ -1,6 +1,6 @@
 <template>
   <div class="home-content">
-    <h3>{{ mainSubTitle }}</h3>
+    <h3>{{mainSubTitle}}</h3>
     <p>
       For a guide and recipes on how to configure / customize this project,
       <br>check out the
@@ -31,7 +31,6 @@ import { npmLinksConfig } from '@/utils/constants';
 @Component
 export default class HomeContent extends Vue {
   private readonly npmLinks = npmLinksConfig;
-
   @Prop({ default: '' }) private mainSubTitle: string;
 }
 </script>

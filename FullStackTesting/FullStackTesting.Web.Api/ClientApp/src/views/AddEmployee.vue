@@ -121,24 +121,28 @@ export default class AddEmployee extends Vue {
     }
 
     this.invalidInputs = false;
-    const addEmployee = EmployeeModule.activeEmployee;
     const newEmployeeId = this.getNewEmployeeId();
 
-    addEmployee["Id"] = newEmployeeId;
+    const addEmployee = {
+      Id: newEmployeeId,
+      ...EmployeeModule.activeEmployee,
+    };
 
     EmployeeModule.AddEmployee(addEmployee).then(() => {
       this.handleCloseModal();
-      EmployeeModule.GetAllEmployees().then(() => {
-        setTimeout(() => this.$emit("employeeAdded", newEmployeeId), 250);
-        alertAxiosSuccess("Employee was added!", "Success", 400);
-      });
+      EmployeeModule.GetAllEmployees()
+        .then(() => {
+          setTimeout(() => this.$emit("employeeAdded", newEmployeeId), 250);
+          alertAxiosSuccess("Employee was added!", "Success", 400);
+        });
     });
   }
 
   private handleCloseModal(): void {
-    EmployeeModule.ResetActiveEmployeeFields().then(() => {
-      this.$modal.hide(this.modalIDs.ADD_EMPLOYEE);
-    });
+    EmployeeModule.ResetActiveEmployeeFields()
+      .then(() => {
+        this.$modal.hide(this.modalIDs.ADD_EMPLOYEE);
+      });
   }
 
   private getNewEmployeeId(): number {
