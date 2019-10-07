@@ -59,9 +59,8 @@ class Employee extends VuexModule implements IEmployeeState {
         employees 
       };
     } catch (e) {
-      const employees = getEmployeesDefault();
       return { 
-        employees 
+        employees: getEmployeesDefault(),
       };
     }
   }
@@ -75,9 +74,8 @@ class Employee extends VuexModule implements IEmployeeState {
         employees 
       };
     } catch (e) {
-      const employees = getEmployeesDefault();
       return { 
-        employees 
+        employees: getEmployeesDefault(),
       };
     }
   }

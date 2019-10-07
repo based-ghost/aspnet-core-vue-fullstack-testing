@@ -1,5 +1,6 @@
-﻿import axios, { AxiosInstance } from "axios";
+﻿import axios, { AxiosInstance, AxiosResponse, AxiosError } from "axios";
 import { alertAxiosError } from "@/utils/helper";
+
 /**
  * Service API base class
  * 1: Configure axios instance
@@ -8,17 +9,17 @@ import { alertAxiosError } from "@/utils/helper";
 export abstract class BaseService {
   protected readonly $http: AxiosInstance;
 
-  protected constructor(apiBaseUrl: string, apiTimeout: number = 10000) {
+  protected constructor(apiBaseUrl: string, apiTimeout: number = 15000) {
     this.$http = axios.create({
       timeout: apiTimeout,
       baseURL: apiBaseUrl
     });
 
     this.$http.interceptors.response.use(
-      response => {
+      (response: AxiosResponse<any>) => {
         return response;
       },
-      error => {
+      (error: AxiosError<any>) => {
         alertAxiosError(error);
         return Promise.reject(error);
       }

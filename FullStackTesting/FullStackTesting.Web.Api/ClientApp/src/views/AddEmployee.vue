@@ -10,7 +10,9 @@
     <div id="modal_x" @click="handleCloseModal()">&times;</div>
     <div class="columns modal-columns is-centered">
       <div class="column has-text-centered">
-        <div class="modal-title">{{titleMsg}}</div>
+        <div class="modal-title">
+          {{titleMsg}}
+        </div>
         <div class="modal-body has-text-left">
           <div class="field">
             <label class="label">Department</label>
@@ -56,8 +58,20 @@
           </div>
         </div>
         <div class="modal-dialog-buttons">
-          <button type="button" class="button is-block" @click="handleCloseModal()">CANCEL</button>
-          <button type="button" class="button is-block" @click="handleAddEmployee()">OK</button>
+          <button 
+            type="button" 
+            class="button is-block" 
+            @click="handleCloseModal()"
+          >
+            CANCEL
+          </button>
+          <button 
+            type="button" 
+            class="button is-block" 
+            @click="handleAddEmployee()"
+          >
+            OK
+          </button>
         </div>
       </div>
     </div>
@@ -71,13 +85,13 @@ import VCheckbox from "@/components/VCheckbox.render";
 import VDropdown from "@/components/VDropdown.render";
 import { dropdownTestData, modalIDs } from "@/utils/constants";
 import { alertAxiosSuccess } from "@/utils/helper";
-import { IDropdownOption } from "@/types";
+import { IDropdownOption, IEmployee } from "@/types";
 
 @Component({
   components: {
     VCheckbox,
-    VDropdown
-  }
+    VDropdown,
+  },
 })
 export default class AddEmployee extends Vue {
   private invalidInputs: boolean = false;
@@ -114,6 +128,10 @@ export default class AddEmployee extends Vue {
     EmployeeModule.UPDATE_FULL_TIME_EMPLOYEE(value);
   }
 
+  get employeeIds(): number[] {
+    return EmployeeModule.employees.map((employee) => employee.Id) || [];
+  }
+
   private handleAddEmployee(): void {
     if (!this.firstName || !this.lastName) {
       this.invalidInputs = true;
@@ -121,9 +139,9 @@ export default class AddEmployee extends Vue {
     }
 
     this.invalidInputs = false;
-    const newEmployeeId = this.getNewEmployeeId();
 
-    const addEmployee = {
+    const newEmployeeId: number = this.getNewEmployeeId();
+    const addEmployee: IEmployee = {
       Id: newEmployeeId,
       ...EmployeeModule.activeEmployee,
     };
@@ -147,11 +165,10 @@ export default class AddEmployee extends Vue {
 
   private getNewEmployeeId(): number {
     let newId;
-    const employeeIds = EmployeeModule.employees.map((employee) => employee.Id) || [];
 
     do {
       newId = Math.floor(Math.random() * 800) + 10;
-    } while (employeeIds.includes(newId));
+    } while (this.employeeIds.includes(newId));
 
     return newId;
   }

@@ -34,7 +34,11 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="employee in employeeList" :key="employee.Id" :id="`row-${employee.Id}`">
+              <tr 
+                v-for="employee in employeeList" 
+                :key="employee.Id" 
+                :id="`row-${employee.Id}`"
+              >
                 <td>{{employee.Id}}</td>
                 <td>{{employee.FirstName}}</td>
                 <td>{{employee.LastName}}</td>
@@ -45,14 +49,15 @@
                     role="button"
                     class="delete is-danger is-medium"
                     @click="deleteEmployee(employee)"
-                  ></a>
+                  />
                 </td>
               </tr>
             </tbody>
           </table>
           <p class="buttons is-pagination-group">
             <a class="button is-link" @click="handleGetEmployees()">
-              <strong>&lt;</strong>Previous
+              <strong>&lt;</strong>
+              Previous
             </a>
             <a class="button is-link" @click="handleGetEmployees()">
               Next
@@ -78,8 +83,8 @@ import { IEmployee } from "@/types";
 @Component({
   components: {
     Spinner,
-    AddEmployee
-  }
+    AddEmployee,
+  },
 })
 export default class Employees extends Vue {
   private loading: boolean = false;

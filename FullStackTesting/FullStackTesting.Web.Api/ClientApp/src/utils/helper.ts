@@ -58,7 +58,7 @@ export const alertAxiosSuccess = (
  * Trigger a vue-snotify snackbar notifcation that the axios request failed
  * Also logs full response in console
  */
-export const alertAxiosError = (error: AxiosError): void => {
+export const alertAxiosError = (error: AxiosError<any>): void => {
   const message = {
     body: "Internal Server Error",
     request: "",
