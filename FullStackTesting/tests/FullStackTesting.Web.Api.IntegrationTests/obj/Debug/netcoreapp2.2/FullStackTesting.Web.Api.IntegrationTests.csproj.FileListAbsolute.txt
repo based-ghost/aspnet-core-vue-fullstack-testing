@@ -68,7 +68,6 @@ C:\Users\matth_000\Desktop\aspnet-core-vue-fullstack-testing\FullStackTesting\te
 C:\Users\matth_000\Desktop\aspnet-core-vue-fullstack-testing\FullStackTesting\tests\FullStackTesting.Web.Api.IntegrationTests\bin\Debug\netcoreapp2.2\FullStackTesting.Web.Api.dll
 C:\Users\matth_000\Desktop\aspnet-core-vue-fullstack-testing\FullStackTesting\tests\FullStackTesting.Web.Api.IntegrationTests\bin\Debug\netcoreapp2.2\FullStackTesting.Web.Api.pdb
 C:\Users\matth_000\Desktop\aspnet-core-vue-fullstack-testing\FullStackTesting\tests\FullStackTesting.Web.Api.IntegrationTests\obj\Debug\netcoreapp2.2\FullStackTesting.Web.Api.IntegrationTests.csprojAssemblyReference.cache
-C:\Users\matth_000\Desktop\aspnet-core-vue-fullstack-testing\FullStackTesting\tests\FullStackTesting.Web.Api.IntegrationTests\obj\Debug\netcoreapp2.2\FullStackTesting.Web.Api.IntegrationTests.csproj.CoreCompileInputs.cache
 C:\Users\matth_000\Desktop\aspnet-core-vue-fullstack-testing\FullStackTesting\tests\FullStackTesting.Web.Api.IntegrationTests\obj\Debug\netcoreapp2.2\FullStackTesting.Web.Api.IntegrationTests.AssemblyInfoInputs.cache
 C:\Users\matth_000\Desktop\aspnet-core-vue-fullstack-testing\FullStackTesting\tests\FullStackTesting.Web.Api.IntegrationTests\obj\Debug\netcoreapp2.2\FullStackTesting.Web.Api.IntegrationTests.AssemblyInfo.cs
 C:\Users\matth_000\Desktop\aspnet-core-vue-fullstack-testing\FullStackTesting\tests\FullStackTesting.Web.Api.IntegrationTests\obj\Debug\netcoreapp2.2\FullStackTesting.Web.Api.IntegrationTests.csproj.CopyComplete
@@ -95,3 +94,6 @@ C:\Users\matth\Desktop\aspnet-core-vue-fullstack-testing\FullStackTesting\tests\
 C:\Users\matth\Desktop\aspnet-core-vue-fullstack-testing\FullStackTesting\tests\FullStackTesting.Web.Api.IntegrationTests\obj\Debug\netcoreapp2.2\FullStackTesting.Web.Api.IntegrationTests.pdb
 C:\Users\matth_000\Desktop\aspnet-core-vue-fullstack-testing\FullStackTesting\tests\FullStackTesting.Web.Api.IntegrationTests\bin\Debug\netcoreapp2.2\testhost.exe
 C:\Users\matth_000\Desktop\aspnet-core-vue-fullstack-testing\FullStackTesting\tests\FullStackTesting.Web.Api.IntegrationTests\bin\Debug\netcoreapp2.2\testhost.dll
+C:\Users\matth_000\Desktop\aspnet-core-vue-fullstack-testing\FullStackTesting\tests\FullStackTesting.Web.Api.IntegrationTests\bin\Debug\netcoreapp2.2\appsettings.Development.json
+C:\Users\matth_000\Desktop\aspnet-core-vue-fullstack-testing\FullStackTesting\tests\FullStackTesting.Web.Api.IntegrationTests\bin\Debug\netcoreapp2.2\appsettings.json
+C:\Users\matth_000\Desktop\aspnet-core-vue-fullstack-testing\FullStackTesting\tests\FullStackTesting.Web.Api.IntegrationTests\bin\Debug\netcoreapp2.2\Properties\launchSettings.json

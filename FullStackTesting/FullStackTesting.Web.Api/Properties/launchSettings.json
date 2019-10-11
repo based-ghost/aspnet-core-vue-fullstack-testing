@@ -5,22 +5,17 @@
     "iisExpress": {
       "applicationUrl": "http://localhost:55276",
       "sslPort": 0
-      //"sslPort": 44346
     }
   },
   "profiles": {
     "IIS Express": {
       "commandName": "IISExpress",
-      //"launchBrowser": true,
-      "launchBrowser": false,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
     "FullStackTesting.Web.Api": {
       "commandName": "Project",
-      //"launchBrowser": true,
-      "launchBrowser": false,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

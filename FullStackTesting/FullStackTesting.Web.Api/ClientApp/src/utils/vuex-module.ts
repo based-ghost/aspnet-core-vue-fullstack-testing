@@ -1,21 +1,15 @@
-import { IEmployee, IDropdownOption } from "@/types";
+import { IEmployee, IDropdownOption } from '@/types';
 
-export const getEmployeesDefault = (): IEmployee[] => {
-  return [];
-};
+export const getEmployeesDefault = (): IEmployee[] => [];
 
-export const getDepartmentObjDefault = (): IDropdownOption => {
-  return {
-    value: 1,
-    label: "Claims"
-  };
-};
+export const getActiveEmployeeDefault = (): IEmployee => ({
+  FirstName: '',
+  LastName: '',
+  FullTime: false,
+  Department: 'Claims',
+});
 
-export const getActiveEmployeeDefault = (): IEmployee => {
-  return {
-    FirstName: "",
-    LastName: "",
-    Department: "Claims",
-    FullTime: false
-  };
-};
+export const getDepartmentObjDefault = (): IDropdownOption => ({
+  value: 1,
+  label: 'Claims',
+});

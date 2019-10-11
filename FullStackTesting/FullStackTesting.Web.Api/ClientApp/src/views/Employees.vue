@@ -119,7 +119,7 @@ export default class Employees extends Vue {
             alertAxiosSuccess("Employee was deleted!", "Success", 400);
           });
       })
-      .then(() => {
+      .finally(() => {
         setTimeout(() => {
           this.loading = false;
         }, 50);
