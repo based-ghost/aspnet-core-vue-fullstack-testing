@@ -18,11 +18,11 @@ import {
 export interface IEmployeeState {
   employees: IEmployee[];
   activeEmployee: {
-    Id?: number;
-    FirstName?: string;
-    LastName?: string;
-    Department?: string;
-    FullTime?: boolean;
+    id?: number;
+    firstName?: string;
+    lastName?: string;
+    department?: string;
+    fullTime?: boolean;
   };
   departmentObj: IDropdownOption;
 }
@@ -86,24 +86,24 @@ class Employee extends VuexModule implements IEmployeeState {
   }
 
   @Mutation
-  public UPDATE_FIRST_NAME(value: string): void {
-    Object.assign(this.activeEmployee, { FirstName: value });
+  public UPDATE_FIRST_NAME(firstName: string): void {
+    Object.assign(this.activeEmployee, { firstName });
   }
 
   @Mutation
-  public UPDATE_LAST_NAME(value: string): void {
-    Object.assign(this.activeEmployee, { LastName: value });
+  public UPDATE_LAST_NAME(lastName: string): void {
+    Object.assign(this.activeEmployee, { lastName });
   }
 
   @Mutation
   public UPDATE_DEPARTMENT_NAME(value: IDropdownOption): void {
     Object.assign(this.departmentObj, value);
-    Object.assign(this.activeEmployee, { Department: value.label });
+    Object.assign(this.activeEmployee, { department: value.label });
   }
 
   @Mutation
-  public UPDATE_FULL_TIME_EMPLOYEE(value: boolean): void {
-    Object.assign(this.activeEmployee, { FullTime: value });
+  public UPDATE_FULL_TIME_EMPLOYEE(fullTime: boolean): void {
+    Object.assign(this.activeEmployee, { fullTime });
   }
 }
 

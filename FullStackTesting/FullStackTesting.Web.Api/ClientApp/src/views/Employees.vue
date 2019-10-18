@@ -35,15 +35,15 @@
             </thead>
             <tbody>
               <tr 
-                v-for="employee in employeeList" 
-                :key="employee.Id" 
-                :id="`row-${employee.Id}`"
+                v-for="employee in employees" 
+                :key="employee.id" 
+                :id="`row-${employee.id}`"
               >
-                <td>{{employee.Id}}</td>
-                <td>{{employee.FirstName}}</td>
-                <td>{{employee.LastName}}</td>
-                <td>{{employee.Department}}</td>
-                <td>{{employee.FullTime ? 'Yes' : 'No'}}</td>
+                <td>{{employee.id}}</td>
+                <td>{{employee.firstName}}</td>
+                <td>{{employee.lastName}}</td>
+                <td>{{employee.department}}</td>
+                <td>{{employee.fullTime ? 'Yes' : 'No'}}</td>
                 <td>
                   <a
                     role="button"
@@ -87,8 +87,12 @@ import { IEmployee } from "@/types";
   },
 })
 export default class Employees extends Vue {
-  private loading: boolean = false;
-  private readonly modalIDs = modalIDs;
+  public loading: boolean = false;
+  public readonly modalIDs = modalIDs;
+
+  get employees(): IEmployee[] {
+    return EmployeeModule.employees;
+  }
 
   get employeeCount(): number {
     return isArrayWithLength(EmployeeModule.employees)
@@ -96,17 +100,13 @@ export default class Employees extends Vue {
       : 0;
   }
 
-  get employeeList(): IEmployee[] {
-    return EmployeeModule.employees;
-  }
-
-  private created(): void {
-    if (!isArrayWithLength(this.employeeList)) {
+  public created(): void {
+    if (!isArrayWithLength(this.employees)) {
       this.handleGetEmployees();
     }
   }
 
-  private deleteEmployee(employee: IEmployee): void {
+  public deleteEmployee(employee: IEmployee): void {
     if (this.loading) {
       return;
     }
@@ -117,23 +117,26 @@ export default class Employees extends Vue {
         EmployeeModule.GetAllEmployees()
           .then(() => {
             alertAxiosSuccess("Employee was deleted!", "Success", 400);
+          })
+          .finally(() => {
+            setTimeout(() => {
+              this.loading = false;
+            }, 50);
           });
       })
-      .finally(() => {
-        setTimeout(() => {
-          this.loading = false;
-        }, 50);
+      .catch(() => {
+        this.loading = false;
       });
   }
 
-  private handleGetEmployees(): void {
+  public handleGetEmployees(): void {
     if (this.loading) {
       return;
     }
 
     this.loading = true;
     EmployeeModule.GetAllEmployees()
-      .finally(() => {
+      .then(() => {
         setTimeout(() => {
           this.loading = false;
         }, 50);
@@ -142,7 +145,7 @@ export default class Employees extends Vue {
 
   // Method that gets executed as callback from @employeeAdded event fired from child component AddEmployee.vue
   // Event is fired when a new employee is successfully added - highlights the new row after the the employee rows have been rendered in DOM
-  private handleSuccessfulAdd(newEmployeeId: number): void {
+  public handleSuccessfulAdd(newEmployeeId: number): void {
     this.$nextTick(() => {
       const newEmployeeRow = document.getElementById(`row-${newEmployeeId}`);
       if (newEmployeeRow) {

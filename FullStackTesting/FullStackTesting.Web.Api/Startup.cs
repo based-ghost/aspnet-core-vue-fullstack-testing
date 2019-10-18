@@ -1,15 +1,14 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
 using VueCliMiddleware;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using FullStackTesting.Web.Api.Models;
 using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.SpaServices;
 using Microsoft.Extensions.Configuration;
-using FullStackTesting.Web.Api.Extensions;
 using FullStackTesting.Web.Api.Persistence;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -37,15 +36,24 @@ namespace FullStackTesting.Web.Api
             // Registered a scoped EmployeeRepository service (DI into EmployeeController)
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 
-            // Register CORS and Mvc
-            services.AddCorsConfig(_corsPolicyName)
-                .AddMvcConfig(CompatibilityVersion.Version_2_2);
+            // Add AllowAny CORS policy
+            services.AddCors(c => c.AddPolicy(_corsPolicyName,
+                options => options.AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()));
+
+            // Register RazorPages/Controllers
+            services.AddControllersWithViews();
+            services.AddRazorPages();
+
+            // IMPORTANT CONFIG CHANGE IN 3.0 - 'Async' suffix in action names get stripped by default - so, to access them by full name with 'Async' part - opt out of this feature'.
+            services.AddMvc(options => options.SuppressAsyncSuffixInActionNames = false);
 
             // In production, the Vue files will be served from this directory
             services.AddSpaStaticFiles(configuration => configuration.RootPath = $"{_spaSourcePath}/dist");
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -75,30 +83,23 @@ namespace FullStackTesting.Web.Api
                 });
             });
 
-            app.UseCors(_corsPolicyName);
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
+            app.UseRouting();
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller}/{action=Index}/{id?}");
-            });
+            app.UseCors(_corsPolicyName);
 
-            app.UseSpa(spa =>
-            {
-                spa.Options.SourcePath = _spaSourcePath;
+            app.UseEndpoints(endpoints => {
+                endpoints.MapControllers();
 
-                if (env.IsDevelopment())
-                {
-                    // Option 1: Run npm process with client app (VueCli - pretty buggy, likely should stick with second option and launch client independently)
-                    // spa.Options.StartupTimeout = new TimeSpan(days: 0, hours: 0, minutes: 1, seconds: 30);
-                    // spa.UseVueCli(npmScript: "serve", port: 8080);
-
-                    // Option 2: Serve ClientApp independently and proxy requests from ClientApp (baseUri using Vue app port):
-                    spa.UseProxyToSpaDevelopmentServer("http://localhost:8080");
-                }
+                // initialize vue cli middleware
+#if DEBUG
+                if (System.Diagnostics.Debugger.IsAttached)
+                    endpoints.MapToVueCliProxy("{*path}", new SpaOptions { SourcePath = _spaSourcePath }, "serve", regex: "running at");
+                else
+#endif
+                    // note: output of vue cli or quasar cli should be wwwroot
+                    endpoints.MapFallbackToFile("index.html");
             });
         }
     }

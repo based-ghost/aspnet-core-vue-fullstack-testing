@@ -9,10 +9,10 @@ import { alertAxiosError } from "@/utils/helper";
 export abstract class BaseService {
   protected readonly $http: AxiosInstance;
 
-  protected constructor(apiBaseUrl: string, apiTimeout: number = 15000) {
+  protected constructor(controller: string, timeout: number = 15000) {
     this.$http = axios.create({
-      timeout: apiTimeout,
-      baseURL: apiBaseUrl
+      timeout,
+      baseURL: `http://localhost:5000/api/${controller}/`,
     });
 
     this.$http.interceptors.response.use(

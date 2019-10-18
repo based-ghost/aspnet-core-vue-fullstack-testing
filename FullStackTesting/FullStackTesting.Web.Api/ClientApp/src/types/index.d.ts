@@ -4,9 +4,9 @@ export interface IDropdownOption {
 }
 
 export interface IEmployee {
-  readonly Id?: number;
-  readonly LastName?: string;
-  readonly FirstName?: string;
-  readonly FullTime?: boolean;
-  readonly Department?: string;
+  readonly id?: number;
+  readonly lastName?: string;
+  readonly firstName?: string;
+  readonly fullTime?: boolean;
+  readonly department?: string;
 }

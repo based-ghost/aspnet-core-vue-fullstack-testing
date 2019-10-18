@@ -93,3 +93,4 @@ C:\Users\matth_000\Desktop\aspnet-core-vue-fullstack-testing\FullStackTesting\Fu
 C:\Users\matth_000\Desktop\aspnet-core-vue-fullstack-testing\FullStackTesting\FullStackTesting.Web.Api\bin\Debug\netcoreapp2.2\Properties\launchSettings.json
 C:\Users\matth_000\Desktop\aspnet-core-vue-fullstack-testing\FullStackTesting\FullStackTesting.Web.Api\obj\Debug\netcoreapp2.2\Razor\Pages\Error.cshtml.g.cs
 C:\Users\matth_000\Desktop\aspnet-core-vue-fullstack-testing\FullStackTesting\FullStackTesting.Web.Api\obj\Debug\netcoreapp2.2\Razor\Pages\_ViewImports.cshtml.g.cs
+C:\Users\matth_000\Desktop\aspnet-core-vue-fullstack-testing\FullStackTesting\FullStackTesting.Web.Api\obj\Debug\netcoreapp2.2\FullStackTesting.Web.Api.csprojAssemblyReference.cache

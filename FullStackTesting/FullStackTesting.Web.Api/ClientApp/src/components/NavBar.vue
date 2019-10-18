@@ -16,6 +16,6 @@ import { routesConfig } from "@/router/routes";
 
 @Component
 export default class NavBar extends Vue {
-  private readonly routes = routesConfig;
+  public readonly routes = routesConfig;
 }
 </script>

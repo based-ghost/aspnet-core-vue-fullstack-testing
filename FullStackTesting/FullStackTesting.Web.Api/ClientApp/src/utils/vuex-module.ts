@@ -3,10 +3,10 @@ import { IEmployee, IDropdownOption } from '@/types';
 export const getEmployeesDefault = (): IEmployee[] => [];
 
 export const getActiveEmployeeDefault = (): IEmployee => ({
-  FirstName: '',
-  LastName: '',
-  FullTime: false,
-  Department: 'Claims',
+  firstName: '',
+  lastName: '',
+  fullTime: false,
+  department: 'Claims',
 });
 
 export const getDepartmentObjDefault = (): IDropdownOption => ({

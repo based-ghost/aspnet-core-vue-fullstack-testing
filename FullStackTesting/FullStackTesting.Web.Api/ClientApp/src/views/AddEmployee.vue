@@ -94,21 +94,21 @@ import { IDropdownOption, IEmployee } from "@/types";
   },
 })
 export default class AddEmployee extends Vue {
-  private invalidInputs: boolean = false;
-  private readonly modalIDs = modalIDs;
-  private readonly dropdownOptions: IDropdownOption[] = dropdownTestData;
+  public invalidInputs: boolean = false;
+  public readonly modalIDs = modalIDs;
+  public readonly dropdownOptions: IDropdownOption[] = dropdownTestData;
 
-  @Prop({ default: "New Employee" }) private titleMsg: string;
+  @Prop({ default: "New Employee" }) public readonly titleMsg: string;
 
   get firstName(): string {
-    return EmployeeModule.activeEmployee.FirstName;
+    return EmployeeModule.activeEmployee.firstName;
   }
   set firstName(value: string) {
     EmployeeModule.UPDATE_FIRST_NAME(value);
   }
 
   get lastName(): string {
-    return EmployeeModule.activeEmployee.LastName;
+    return EmployeeModule.activeEmployee.lastName;
   }
   set lastName(value: string) {
     EmployeeModule.UPDATE_LAST_NAME(value);
@@ -122,17 +122,17 @@ export default class AddEmployee extends Vue {
   }
 
   get fullTimeEmployee(): boolean {
-    return EmployeeModule.activeEmployee.FullTime;
+    return EmployeeModule.activeEmployee.fullTime;
   }
   set fullTimeEmployee(value: boolean) {
     EmployeeModule.UPDATE_FULL_TIME_EMPLOYEE(value);
   }
 
   get employeeIds(): number[] {
-    return EmployeeModule.employees.map((employee) => employee.Id) || [];
+    return EmployeeModule.employees.map((employee) => employee.id) || [];
   }
 
-  private handleAddEmployee(): void {
+  public handleAddEmployee(): void {
     if (!this.firstName || !this.lastName) {
       this.invalidInputs = true;
       return;
@@ -142,7 +142,7 @@ export default class AddEmployee extends Vue {
 
     const newEmployeeId: number = this.getNewEmployeeId();
     const addEmployee: IEmployee = {
-      Id: newEmployeeId,
+      id: newEmployeeId,
       ...EmployeeModule.activeEmployee,
     };
 
@@ -156,14 +156,14 @@ export default class AddEmployee extends Vue {
     });
   }
 
-  private handleCloseModal(): void {
+  public handleCloseModal(): void {
     EmployeeModule.ResetActiveEmployeeFields()
       .then(() => {
         this.$modal.hide(this.modalIDs.ADD_EMPLOYEE);
       });
   }
 
-  private getNewEmployeeId(): number {
+  public getNewEmployeeId(): number {
     let newId;
 
     do {
