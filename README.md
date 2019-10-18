@@ -44,6 +44,8 @@ Prototype application with a Vue.js client that has significant unit testing cov
                endpoints.MapFallbackToFile("index.html");
            });
 	```
+	
+	- You can choose to not use this the way it is currently configured and instead launch the front-end and back-end independently and proxy requests to your specified port.
 
 ## Scripts (ClientApp)
 
