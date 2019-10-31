@@ -6,11 +6,11 @@ import { Component, Prop } from "vue-property-decorator";
  */
 @Component
 export default class VCheckBox extends Vue {
-  @Prop({ default: "" }) private wrapperClass: string;
-  @Prop({ default: "" }) private controlClass: string;
-  @Prop({ default: "" }) private trailingLabel: string;
-  @Prop({ default: false }) private checked: boolean;
-  @Prop({ default: false }) private disabled: boolean;
+  @Prop({ default: null })  public readonly wrapperClass:  string;
+  @Prop({ default: null })  public readonly controlClass:  string;
+  @Prop({ default: null })  public readonly trailingLabel: string;
+  @Prop({ default: false }) public readonly checked:       boolean;
+  @Prop({ default: false }) public readonly disabled:      boolean;
 
   public render(): VNode {
     return (
