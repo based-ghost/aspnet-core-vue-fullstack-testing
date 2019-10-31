@@ -1,5 +1,5 @@
-# Full-Stack Testing (ASP.NET Core 2.2 & Vue.js)
-Prototype application with a Vue.js client that has significant unit testing coverage with Vue Test Utils (Jest as the test runner) and configured for e2e testing with Nightwatch. The web API is built using ASP.NET Core 2.2 and unit/integration testing is handled using xUnit.net. Has a basic, functional UI for executing requests to a back-end web api.
+# Full-Stack Testing (ASP.NET Core 3.0 & Vue.js)
+Prototype application with a Vue.js client that has significant unit testing coverage with Vue Test Utils (Jest as the test runner) and configured for e2e testing with Nightwatch. The web API is built using ASP.NET Core 3.0 and unit/integration testing is handled using xUnit.core. Has a basic, functional UI for executing requests to a back-end web api.
 
 ## Demo
 
@@ -14,49 +14,38 @@ Prototype application with a Vue.js client that has significant unit testing cov
 	- [`vuex-module-decorators`](https://github.com/championswimmer/vuex-module-decorators) which enables you to write class based vuex store modules
     - [`vue-snotify`](https://github.com/artemsky/vue-snotify) snackbar notifications (based off the original library for Angular)
 	- [`vue-js-modal`](https://github.com/euvl/vue-js-modal) for displaying compiled templates as modal components, or the option to create modals dynamically at runtime (my preferred modal plugin for Vue.js)
-- Back-end Web API using ```ASP.NET Core 2.2``` and a seperate ```xUnit.net``` test project (for integration/unit testing of server-side code). For both Development and xUnit tests I am using the In-Memory database option with ```Entity Framework Core``` for convienence
+- Back-end Web API using ```ASP.NET Core 3.0``` and a seperate ```xUnit.core``` test project (for integration testing of Web API). For both Development and xUnit tests I am using the ```InMemory``` database option with ```Entity Framework Core``` for convienence
 
 ## Setup
 1. Install the following (or confirm installed):
-   - [`.NET Core 2.2 SDK`](https://dotnet.microsoft.com/download/dotnet-core/2.2)
+   - [`.NET Core 3.0 SDK`](https://dotnet.microsoft.com/download/dotnet-core/3.0)
    - [`Node.js >= v8`](https://nodejs.org/en/download/)
 2. After cloning the repo, run the command ```npm install``` in the ```ClientApp``` directory to restore all Node packages/dependencies from package.json
 3. Open the .sln solution in Visual Studio and make sure all dependencies and Nuget dependencies are installed/restored - won't hurt to rebuild the entire solution (both projects)
 4. Two potential ways to start the entire project:
-	- I installed and configured the [`aspnetcore-vueclimiddleware`](https://github.com/EEParker/aspnetcore-vueclimiddleware) in the FullStackTesting.Web.Api project - in theory this should make things easier by allowing you to launch the Web Api and the Vue.js client from within Visual Studio by just running the project. However, in practice I found this option to be very hit or miss (mostly miss as it will fail a couple times before it works). This option is the Vue.js alternative to Angular's ```UseAngularCliServer```, which I've had no issues with - I may be missing some configurations somewhere.
+	- I installed and configured the [`aspnetcore-vueclimiddleware`](https://github.com/EEParker/aspnetcore-vueclimiddleware) in the FullStackTesting.Web.Api project - in theory this makes things easier by allowing you to launch the Web Api and the Vue.js client from within Visual Studio by just running the project. I found its functionality to be spotty when used with .NET Core 2.x, however, after upgrading to .NET Core 3.0 and bump the Nugtet package to the 3.0 version I encountered zero issues.
 	
 	```csharp
-	// BOTTOM OF Startup.Configure
-	
-	app.UseSpa(spa =>
-        {
-            spa.Options.SourcePath = _spaSourcePath;
+	   using VueCliMiddleware;
+	   
+	       // ...BOTTOM OF Startup.Configure (this code block replaces the legacy 2.x app.UseSpa block...)
 
-            if (env.IsDevelopment())
-            {
-                // Option 1: Run npm process with client app
-                 spa.Options.StartupTimeout = new TimeSpan(days: 0, hours: 0, minutes: 1, seconds: 30);
-                 spa.UseVueCli(npmScript: "serve", port: 8080);
-            }
-        });
+           app.UseEndpoints(endpoints =>
+           {
+               endpoints.MapControllers();
+
+               // initialize vue cli middleware
+   #if DEBUG
+               if (System.Diagnostics.Debugger.IsAttached)
+                   endpoints.MapToVueCliProxy("{*path}", new SpaOptions { SourcePath = "ClientApp" }, "serve", regex: "running at");
+               else
+   #endif
+               // note: output of vue cli or quasar cli should be wwwroot
+               endpoints.MapFallbackToFile("index.html");
+           });
 	```
 	
-	- Launch the Web Api and the Vue.js client seperately - this should be be the preferred method. First, in the ClientApp directory run the command ```npm serve``` and when it is listening successfully at the specified uri/port (http://localhost:8080), you can run it in your preferred browser. Next, run the ASP.NET Core Web Api project in visual studio - the application will proxy requests to the specified uri/port - which should be set to your client uri/port.
-	
-	```csharp
-	// BOTTOM OF Startup.Configure
-		
-	app.UseSpa(spa =>
-        {
-            spa.Options.SourcePath = _spaSourcePath;
-
-            if (env.IsDevelopment())
-            {
-                // Option 2: Serve ClientApp independently and proxy requests from ClientApp to api:
-                spa.UseProxyToSpaDevelopmentServer("http://localhost:8080");
-            }
-        });
-	```
+	- You can choose to not use this the way it is currently configured and instead launch the front-end and back-end independently and proxy requests to your specified port.
 
 ## Scripts (ClientApp)
 
