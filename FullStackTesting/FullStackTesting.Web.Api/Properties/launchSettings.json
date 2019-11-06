@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:55276",
+      "applicationUrl": "http://localhost:5000",
       "sslPort": 0
     }
   },
@@ -15,7 +15,8 @@
       }
     },
     "FullStackTesting.Web.Api": {
-      "commandName": "Project",
+      "commandName": "IISExpress",
+      "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

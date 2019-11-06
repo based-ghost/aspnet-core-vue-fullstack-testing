@@ -43,8 +43,7 @@ namespace FullStackTesting.Web.Api
                     .AllowAnyMethod()));
 
             // Register RazorPages/Controllers
-            services.AddControllersWithViews();
-            services.AddRazorPages();
+            services.AddControllers();
 
             // IMPORTANT CONFIG CHANGE IN 3.0 - 'Async' suffix in action names get stripped by default - so, to access them by full name with 'Async' part - opt out of this feature'.
             services.AddMvc(options => options.SuppressAsyncSuffixInActionNames = false);
