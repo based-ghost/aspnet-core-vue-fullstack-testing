@@ -5,8 +5,8 @@ import router from '@/router';
 import store from '@/store';
 import VModal from 'vue-js-modal';
 import Snotify from 'vue-snotify';
-import { snotifyDefaults } from '@/utils/constants';
 import vClickOutside from '@/plugins/vue-click-outside';
+import { snotifyDefaults } from '@/config/vue-snotify.config';
 import '@/registerServiceWorker';
 
 Vue.use(VModal);

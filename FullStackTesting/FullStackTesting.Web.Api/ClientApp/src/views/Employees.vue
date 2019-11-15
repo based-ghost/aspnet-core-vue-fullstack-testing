@@ -77,7 +77,7 @@ import Spinner from "@/components/Spinner.vue";
 import AddEmployee from "@/views/AddEmployee.vue";
 import { EmployeeModule } from "@/store/modules/employee.module";
 import { isArrayWithLength, alertAxiosSuccess } from "@/utils/helper";
-import { modalIDs } from "@/utils/constants";
+import { modalIDs, ConfigData } from "@/config/constants";
 import { IEmployee } from "@/types";
 
 @Component({
@@ -88,7 +88,7 @@ import { IEmployee } from "@/types";
 })
 export default class Employees extends Vue {
   public loading: boolean = false;
-  public readonly modalIDs = modalIDs;
+  public readonly modalIDs: ConfigData = modalIDs;
 
   get employees(): IEmployee[] {
     return EmployeeModule.employees;
@@ -135,12 +135,11 @@ export default class Employees extends Vue {
     }
 
     this.loading = true;
-    EmployeeModule.GetAllEmployees()
-      .then(() => {
-        setTimeout(() => {
-          this.loading = false;
-        }, 50);
-      });
+    EmployeeModule.GetAllEmployees().then(() => {
+      setTimeout(() => {
+        this.loading = false;
+      }, 50);
+    });
   }
 
   // Method that gets executed as callback from @employeeAdded event fired from child component AddEmployee.vue

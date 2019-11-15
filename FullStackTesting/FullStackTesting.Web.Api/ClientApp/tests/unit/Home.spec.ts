@@ -10,13 +10,13 @@ import VueRouter from 'vue-router';
  */
 describe('Home.vue (./views)', () => {
   const mountHome = () => {
-      const localVue = createLocalVue();
-      localVue.use(VueRouter);
-      const router = new VueRouter(routerOptions);
-      return shallowMount(Home, {
-          localVue,
-          router
-      });
+    const localVue = createLocalVue();
+    localVue.use(VueRouter);
+    const router = new VueRouter(routerOptions);
+    return shallowMount(Home, {
+      localVue,
+      router
+    });
   };
 
   it('should mount and render properly', () => {

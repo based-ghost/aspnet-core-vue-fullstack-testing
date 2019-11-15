@@ -26,11 +26,11 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { npmLinksConfig } from '@/utils/constants';
+import { npmLinksConfig, ConfigData } from '@/config/constants';
 
 @Component
 export default class HomeContent extends Vue {
-  public readonly npmLinks = npmLinksConfig;
+  public readonly npmLinks: ConfigData = npmLinksConfig;
   @Prop({ default: '' }) public readonly mainSubTitle: string;
 }
 </script>

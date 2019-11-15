@@ -1,7 +1,7 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import vClickOutside from '@/plugins/vue-click-outside';
 import VDropdown from '@/components/VDropdown.render';
-import { dropdownTestData } from '@/utils/constants';
+import { dropdownTestData } from '@/config/constants';
 
 /**
  * Component: VDropdown.render.tsx

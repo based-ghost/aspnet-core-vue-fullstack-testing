@@ -1,75 +1,75 @@
 .table.is-fullwidth {
-    tbody > tr {
-        transition: background-color .25s ease-in;
-        
-        &:hover {
-            background-color: $color-bg-box;
-        }
+  tbody > tr {
+    transition: background-color 0.25s ease-in;
+
+    &:hover {
+      background-color: $color-bg-box;
     }
-    
-    @media (max-width: 600px) {
-        font-size: .8rem !important;
-    }
+  }
+
+  @media (max-width: 600px) {
+    font-size: 0.8rem !important;
+  }
 }
 
 .table-controls {
-    margin-bottom: 1.5rem !important;
-    
-    .subtitle {
-        margin-bottom: 0rem !important;
+  margin-bottom: 1.5rem !important;
 
-        @media (max-width: 600px) {
-            font-size: 1rem;
-        }
-    }
+  .subtitle {
+    margin-bottom: 0rem !important;
 
-    a {
-        border-radius: 0px;
-               
-        strong {
-            margin-right: .25rem;
-        }
+    @media (max-width: 600px) {
+      font-size: 1rem;
     }
+  }
+
+  a {
+    border-radius: 0px;
+
+    strong {
+      margin-right: 0.25rem;
+    }
+  }
 }
 
 .is-pagination-group {
-    margin-top: 2rem;
+  margin-top: 2rem;
 
-    > a {
-        width: 8rem;
-        border-radius: 0px;
+  > a {
+    width: 8rem;
+    border-radius: 0px;
 
-        &:nth-child(1) {
-            margin-left: auto;
+    &:nth-child(1) {
+      margin-left: auto;
 
-            strong {
-                margin-right: .35rem;
-            }
-        }
-
-        &:nth-child(2) {
-            margin-right: auto;
-
-            strong {
-                margin-left: .35rem;
-            }
-        }
+      strong {
+        margin-right: 0.35rem;
+      }
     }
+
+    &:nth-child(2) {
+      margin-right: auto;
+
+      strong {
+        margin-left: 0.35rem;
+      }
+    }
+  }
 }
 
 .delete.is-danger {
-    background-color: rgba(255, 65, 54, .13);
+  background-color: rgba(255, 65, 54, 0.13);
 
-    &::before, 
-    &::after {
-        background-color: #FF4136;
-    }
+  &::before,
+  &::after {
+    background-color: #ff4136;
+  }
 
-    &:hover {
-        background-color: rgba(255, 65, 54, .25);
-    }
+  &:hover {
+    background-color: rgba(255, 65, 54, 0.25);
+  }
 }
 
 .highlight-new-row {
-    background-color: rgba(66, 185, 131, .25) !important; 
+  background-color: rgba(66, 185, 131, 0.25) !important;
 }

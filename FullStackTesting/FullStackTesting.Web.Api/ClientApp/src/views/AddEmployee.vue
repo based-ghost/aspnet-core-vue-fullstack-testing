@@ -83,9 +83,9 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 import { EmployeeModule } from "@/store/modules/employee.module";
 import VCheckbox from "@/components/VCheckbox.render";
 import VDropdown from "@/components/VDropdown.render";
-import { dropdownTestData, modalIDs } from "@/utils/constants";
 import { alertAxiosSuccess } from "@/utils/helper";
 import { IDropdownOption, IEmployee } from "@/types";
+import { dropdownTestData, modalIDs, ConfigData } from "@/config/constants";
 
 @Component({
   components: {
@@ -95,7 +95,7 @@ import { IDropdownOption, IEmployee } from "@/types";
 })
 export default class AddEmployee extends Vue {
   public invalidInputs: boolean = false;
-  public readonly modalIDs = modalIDs;
+  public readonly modalIDs: ConfigData = modalIDs;
   public readonly dropdownOptions: IDropdownOption[] = dropdownTestData;
 
   @Prop({ default: "New Employee" }) public readonly titleMsg: string;
@@ -148,19 +148,17 @@ export default class AddEmployee extends Vue {
 
     EmployeeModule.AddEmployee(addEmployee).then(() => {
       this.handleCloseModal();
-      EmployeeModule.GetAllEmployees()
-        .then(() => {
-          setTimeout(() => this.$emit("employeeAdded", newEmployeeId), 250);
-          alertAxiosSuccess("Employee was added!", "Success", 400);
-        });
+      EmployeeModule.GetAllEmployees().then(() => {
+        setTimeout(() => this.$emit("employeeAdded", newEmployeeId), 250);
+        alertAxiosSuccess("Employee was added!", "Success", 400);
+      });
     });
   }
 
   public handleCloseModal(): void {
-    EmployeeModule.ResetActiveEmployeeFields()
-      .then(() => {
-        this.$modal.hide(this.modalIDs.ADD_EMPLOYEE);
-      });
+    EmployeeModule.ResetActiveEmployeeFields().then(() => {
+      this.$modal.hide(this.modalIDs.ADD_EMPLOYEE);
+    });
   }
 
   public getNewEmployeeId(): number {

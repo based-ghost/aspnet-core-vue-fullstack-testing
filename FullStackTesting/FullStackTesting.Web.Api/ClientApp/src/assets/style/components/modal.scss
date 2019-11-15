@@ -1,70 +1,66 @@
 .v--modal {
-    text-align: center !important;
-    z-index: 10000 !important;
+  text-align: center !important;
+  z-index: 10000 !important;
 
-    #modal_x {
-        position: absolute;
-        top: .3em;
-        right: .5em;
-        cursor: pointer;
-        color: #4a4a4a;
-        font-size: 27px;
-        -webkit-transition: all 0.15s ease-in;
-        transition: all 0.15s ease-in;
-    
-        &:hover {
-            color: #6C7E90;
-        }
-    }
+  #modal_x {
+    position: absolute;
+    top: 0.3em;
+    right: 0.5em;
+    cursor: pointer;
+    color: #4a4a4a;
+    font-size: 27px;
+    transition: all 0.15s ease-in;
 
-    .modal-title {
-        font-size: 1.25em;
-        display: block;
-        height: 9.75%;
-        color: #4a4a4a;
-        font-weight: 600;
-        margin: 0 0 1.35rem 0;
-        text-transform: uppercase;
-        border-bottom: 1px solid #dbdbdb;
+    &:hover {
+      color: #6c7e90;
     }
+  }
 
-    .modal-body {
-        padding-top: .2em;
-        height: 75.5%;
-        font-size: 1.1em;
-        font-weight: 400;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-    }
+  .modal-title {
+    font-size: 1.25em;
+    display: block;
+    height: 9.75%;
+    color: #4a4a4a;
+    font-weight: 600;
+    margin: 0 0 1.35rem 0;
+    text-transform: uppercase;
+    border-bottom: 1px solid #dbdbdb;
+  }
 
-    .modal-dialog-buttons {
-        display: flex;
-        flex: 0 1 auto;
-        width: 100%;
-        border-top: 1px solid #dbdbdb;
-    
-        > button {
-                width: 50%;
-                background: transparent;
-                border: 0;
-                height: 52px;
-                color: #2c3e50;
-                outline: none !important;
-                -webkit-box-shadow: none !important;
-                box-shadow: none !important;
-                -webkit-border-radius: 0px;
-                border-radius: 0px;
-                -webkit-transition: all 0.15s ease-in;
-                transition: all 0.15s ease-in;
-            
-                &:hover {
-                    background-color: whitesmoke;
-                }
-    
-                &:last-child {
-                    border-left: 1px solid #dbdbdb;
-                }
-        }
+  .modal-body {
+    padding-top: 0.2em;
+    height: 75.5%;
+    font-size: 1.1em;
+    font-weight: 400;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .modal-dialog-buttons {
+    display: flex;
+    flex: 0 1 auto;
+    width: 100%;
+    border-top: 1px solid #dbdbdb;
+
+    > button {
+      width: 50%;
+      background: transparent;
+      border: 0;
+      height: 52px;
+      color: #2c3e50;
+      outline: none !important;
+      box-shadow: none !important;
+      border-radius: 0px;
+      transition: all 0.15s ease-in;
+
+      &:hover {
+        background-color: whitesmoke;
+      }
+
+      &:last-child {
+        border-left: 1px solid #dbdbdb;
+      }
     }
+  }
 }

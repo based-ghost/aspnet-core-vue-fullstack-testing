@@ -1,37 +1,33 @@
 ﻿import store from "@/store";
 import { IEmployee, IDropdownOption } from "@/types";
 import { EmployeeApi } from "@/api/employees.service";
-import {
-  Module,
-  VuexModule,
-  Mutation,
-  MutationAction,
-  getModule,
-  Action
-} from "vuex-module-decorators";
-import {
-  getEmployeesDefault,
-  getDepartmentObjDefault,
-  getActiveEmployeeDefault
-} from "@/utils/vuex-module";
+import { Module, VuexModule, Mutation, MutationAction, getModule, Action } from "vuex-module-decorators";
 
 export interface IEmployeeState {
   employees: IEmployee[];
-  activeEmployee: {
-    id?: number;
-    firstName?: string;
-    lastName?: string;
-    department?: string;
-    fullTime?: boolean;
-  };
+  activeEmployee: IEmployee;
   departmentObj: IDropdownOption;
 }
 
+export const employeesInitialState: IEmployee[] = [];
+
+export const activeEmployeeInitialState = Object.freeze<IEmployee>({
+  firstName: '',
+  lastName: '',
+  fullTime: false,
+  department: 'Claims',
+});
+
+export const departmentInitialState = Object.freeze<IDropdownOption>({
+  value: 1,
+  label: 'Claims',
+});
+
 @Module({ dynamic: true, store, name: "employee" })
 class Employee extends VuexModule implements IEmployeeState {
-  public employees: IEmployee[] = getEmployeesDefault();
-  public activeEmployee: IEmployee = getActiveEmployeeDefault();
-  public departmentObj: IDropdownOption = getDepartmentObjDefault();
+  public employees: IEmployee[] =  { ...employeesInitialState };
+  public activeEmployee: IEmployee = { ...activeEmployeeInitialState };
+  public departmentObj: IDropdownOption = { ...departmentInitialState };
 
   @Action
   public async DeleteEmployee(employee: IEmployee): Promise<any> {
@@ -46,8 +42,12 @@ class Employee extends VuexModule implements IEmployeeState {
   @MutationAction<Partial<IEmployeeState>>({ mutate: ["activeEmployee", "departmentObj"] })
   public async ResetActiveEmployeeFields(): Promise<Partial<IEmployeeState>> {
     return {
-      activeEmployee: getActiveEmployeeDefault(),
-      departmentObj: getDepartmentObjDefault()
+      activeEmployee: {
+        ...activeEmployeeInitialState,
+      },
+      departmentObj: {
+        ...departmentInitialState,
+      },
     };
   }
 
@@ -59,8 +59,10 @@ class Employee extends VuexModule implements IEmployeeState {
         employees 
       };
     } catch (e) {
-      return { 
-        employees: getEmployeesDefault(),
+      return {
+        employees: {
+          ...employeesInitialState,
+        },
       };
     }
   }
@@ -75,7 +77,9 @@ class Employee extends VuexModule implements IEmployeeState {
       };
     } catch (e) {
       return { 
-        employees: getEmployeesDefault(),
+        employees: {
+          ...employeesInitialState,
+        },
       };
     }
   }
