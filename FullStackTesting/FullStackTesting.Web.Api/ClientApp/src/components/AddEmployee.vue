@@ -33,7 +33,7 @@
                 v-model.trim="firstName"
                 name="FirstName"
                 type="text"
-                :class="['input', { 'is-danger' : invalidInputs && !firstName }]"
+                :class="['input', { 'is-danger': invalidInputs && !firstName }]"
               />
             </div>
           </div>
@@ -44,7 +44,7 @@
                 v-model.trim="lastName"
                 name="LastName"
                 type="text"
-                :class="['input', { 'is-danger' : invalidInputs && !lastName }]"
+                :class="['input', { 'is-danger': invalidInputs && !lastName }]"
               />
             </div>
           </div>
@@ -80,11 +80,11 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { EmployeeModule } from "@/store/modules/employee.module";
+import { alertAxiosSuccess } from "@/utils";
+import { IDropdownOption, IEmployee } from "@/types";
 import VCheckbox from "@/components/VCheckbox.render";
 import VDropdown from "@/components/VDropdown.render";
-import { alertAxiosSuccess } from "@/utils/helper";
-import { IDropdownOption, IEmployee } from "@/types";
+import { EmployeeModule } from "@/store/modules/employee.module";
 import { dropdownTestData, modalIDs, ConfigData } from "@/config/constants";
 
 @Component({

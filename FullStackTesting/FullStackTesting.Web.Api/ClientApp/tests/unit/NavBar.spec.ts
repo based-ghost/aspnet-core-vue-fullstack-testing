@@ -1,8 +1,8 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils';
-import { getObjectValues } from '@/utils/helper';
-import { routesConfig } from '@/router/routes';
-import NavBar from '@/components/NavBar.vue';
-import VueRouter from 'vue-router';
+import { shallowMount } from '@vue/test-utils';
+import router from "@/router";
+import Navbar from '@/components/NavBar.vue';
+import { getObjectValues } from '@/utils';
+import { RoutesConfig } from '@/config/routes.config';
 
 /**
  * Component: NavBar.vue
@@ -11,10 +11,8 @@ import VueRouter from 'vue-router';
  */
 describe("NavBar.vue (./components)", () => {
   const mountNavBar = () => {
-    const localVue = createLocalVue();
-    localVue.use(VueRouter);
-    return shallowMount(NavBar, {
-      localVue
+    return shallowMount(Navbar, {
+      router
     });
   };
 
@@ -24,9 +22,9 @@ describe("NavBar.vue (./components)", () => {
     expect(wrapper.find("#nav").exists()).toBe(true);
   });
 
-  it("router-links should be rendered for each route defined in global routesConfig object", () => {
+  it("router-links should be rendered for each route defined in global RoutesConfig object", () => {
     const wrapper = mountNavBar();
-    const routerLinkIds = getObjectValues(routesConfig, "meta.id");
+    const routerLinkIds = getObjectValues(RoutesConfig, "meta.id");
 
     routerLinkIds.forEach((anchorId) => {
       expect(wrapper.find(`#${anchorId}`).exists()).toBe(true);

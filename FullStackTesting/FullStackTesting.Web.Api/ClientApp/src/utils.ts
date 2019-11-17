@@ -1,5 +1,5 @@
 import { AxiosError } from "axios";
-import { EventBus } from "../eventBus";
+import { EventBus } from "./event-bus";
 
 /**
  * Determine if obect is an array and contains items

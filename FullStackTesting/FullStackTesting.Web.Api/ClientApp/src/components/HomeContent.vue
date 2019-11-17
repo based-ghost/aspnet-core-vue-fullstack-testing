@@ -30,7 +30,7 @@ import { npmLinksConfig, ConfigData } from '@/config/constants';
 
 @Component
 export default class HomeContent extends Vue {
+  @Prop() public readonly mainSubTitle: string;
   public readonly npmLinks: ConfigData = npmLinksConfig;
-  @Prop({ default: '' }) public readonly mainSubTitle: string;
 }
 </script>

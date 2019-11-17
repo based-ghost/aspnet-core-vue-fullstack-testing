@@ -1,10 +1,9 @@
-import { RouterOptions, RouteConfig } from "vue-router";
-import Home from "@/views/Home.vue";
-import Employees from "@/views/Employees.vue";
+import { Home, Employees } from "@/views";
+import { RouteConfig, RouterOptions } from "vue-router";
 
 export type RoutesConfig = { [key: string]: RouteConfig };
 
-export const routesConfig = Object.freeze<RoutesConfig>({
+export const RoutesConfig = Object.freeze<RoutesConfig>({
   home: {
     path: "/",
     name: "Home",
@@ -23,17 +22,17 @@ export const routesConfig = Object.freeze<RoutesConfig>({
   }
 });
 
-export const routerOptions: RouterOptions = {
+export const AppRouterOptions: RouterOptions = {
   mode: "history",
   base: process.env.BASE_URL,
   routes: [
     {
       component: Home,
-      ...routesConfig.home
+      ...RoutesConfig.home
     },
     {
       component: Employees,
-      ...routesConfig.employee
+      ...RoutesConfig.employee
     }
   ]
 };

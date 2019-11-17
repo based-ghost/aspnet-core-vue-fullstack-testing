@@ -1,7 +1,7 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils';
-import { routesConfig, routerOptions } from '@/router/routes';
-import Home from '@/views/Home.vue';
-import VueRouter from 'vue-router';
+import { shallowMount } from '@vue/test-utils';
+import router from "@/router";
+import { Home } from '@/views';
+import { RoutesConfig } from '@/config/routes.config';
 
 /**
  * Component: Home.vue
@@ -10,11 +10,7 @@ import VueRouter from 'vue-router';
  */
 describe('Home.vue (./views)', () => {
   const mountHome = () => {
-    const localVue = createLocalVue();
-    localVue.use(VueRouter);
-    const router = new VueRouter(routerOptions);
     return shallowMount(Home, {
-      localVue,
       router
     });
   };
@@ -28,6 +24,6 @@ describe('Home.vue (./views)', () => {
 
   it('should enter/reflect the correct route', () => {
     const wrapper = mountHome();
-    expect(wrapper.vm.$router.currentRoute.name).toEqual(routesConfig.home.name);
+    expect(wrapper.vm.$router.currentRoute.name).toEqual(RoutesConfig.home.name);
   });
 });

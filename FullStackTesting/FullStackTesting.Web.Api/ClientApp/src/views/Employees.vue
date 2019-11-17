@@ -73,12 +73,12 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import Spinner from "@/components/Spinner.vue";
-import AddEmployee from "@/views/AddEmployee.vue";
-import { EmployeeModule } from "@/store/modules/employee.module";
-import { isArrayWithLength, alertAxiosSuccess } from "@/utils/helper";
-import { modalIDs, ConfigData } from "@/config/constants";
 import { IEmployee } from "@/types";
+import Spinner from "@/components/Spinner.vue";
+import AddEmployee from "@/components/AddEmployee.vue";
+import { modalIDs, ConfigData } from "@/config/constants";
+import { isArrayWithLength, alertAxiosSuccess } from "@/utils";
+import { EmployeeModule } from "@/store/modules/employee.module";
 
 @Component({
   components: {

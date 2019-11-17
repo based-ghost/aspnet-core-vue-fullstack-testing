@@ -7,7 +7,7 @@
     </div>
     <h1 class="title main-title">Full Stack Testing</h1>
     <hr>
-    <HomeContent mainSubTitle="Project scaffolded with Vue CLI"/>
+    <home-content mainSubTitle="Project scaffolded with Vue CLI"/>
   </div>
 </template>
 

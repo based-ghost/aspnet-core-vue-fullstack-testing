@@ -1,5 +1,5 @@
 ﻿import axios, { AxiosInstance, AxiosResponse, AxiosError } from "axios";
-import { alertAxiosError } from "@/utils/helper";
+import { alertAxiosError } from "@/utils";
 
 /**
  * Service API base class
