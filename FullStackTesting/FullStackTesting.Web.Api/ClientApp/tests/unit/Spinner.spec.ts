@@ -8,38 +8,40 @@ import Spinner from '@/components/Spinner.vue';
  * Test 3: props.show is FALSE - component should not be visible
  * Test 4: props.show is TRUE - component should be visible
  */
-describe("Spinner.vue (./components)", () => {
-  it("should NOT be a Vue instance (functional component)", () => {
+describe("Spinner.vue", () => {
+  const spinnerParentElId = "#load-spinner";
+
+  it("should NOT be a Vue instance (functional component)", async () => {
     const wrapper = shallowMount(Spinner);
-    expect(wrapper.isVueInstance()).toBe(false);
+    expect(wrapper.isVueInstance()).toBeFalsy();
   });
 
-  it("should render properly", () => {
+  it("should render properly", async () => {
     const wrapper = shallowMount(Spinner);
-    expect(wrapper.find("#load-spinner").exists()).toBe(true);
+    expect(wrapper.find(spinnerParentElId).exists()).toBeTruthy();
   });
 
-  it("when props.show is false v-show directive is functional and display style should render none", () => {
+  it("when props.show is false v-show directive is functional and display style should render none", async () => {
+    const show = false;
     const wrapper = shallowMount(Spinner, {
       context: {
         props: {
-          show: false
+          show
         }
       }
     });
-
-    expect(wrapper.find("#load-spinner").isVisible()).toBe(false);
+    expect(wrapper.find(spinnerParentElId).isVisible()).toBe(show);
   });
 
-  it("when props.show is true v-show directive is functional and display style should render block (visible)", () => {
+  it("when props.show is true v-show directive is functional and display style should render block (visible)", async () => {
+    const show = true;
     const wrapper = shallowMount(Spinner, {
       context: {
         props: {
-          show: true
+          show
         }
       }
     });
-
-    expect(wrapper.find("#load-spinner").isVisible()).toBe(true);
+    expect(wrapper.find(spinnerParentElId).isVisible()).toBe(show);
   });
 });

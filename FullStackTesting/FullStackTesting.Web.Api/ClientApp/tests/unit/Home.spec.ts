@@ -8,22 +8,22 @@ import { RoutesConfig } from '@/config/routes.config';
  * Test 1: component should mount and render properly
  * Test 2: $router.currentRoute.name should equal the name for the Home.vue route
  */
-describe('Home.vue (./views)', () => {
-  const mountHome = () => {
+describe('Home.vue', () => {
+  const shallowMountHome = () => {
     return shallowMount(Home, {
       router
     });
   };
 
-  it('should mount and render properly', () => {
-    const wrapper = mountHome();
-    expect(wrapper.isVueInstance()).toBe(true);
-    expect(wrapper.find('img').exists()).toBe(true);
-    expect(wrapper.find('h1.main-title').exists()).toBe(true);
+  it('should mount and render properly', async () => {
+    const wrapper = shallowMountHome();
+    expect(wrapper.isVueInstance()).toBeTruthy();
+    expect(wrapper.find('img').exists()).toBeTruthy();
+    expect(wrapper.find('h1.main-title').exists()).toBeTruthy();
   });
 
-  it('should enter/reflect the correct route', () => {
-    const wrapper = mountHome();
+  it('should enter/reflect the correct route', async () => {
+    const wrapper = shallowMountHome();
     expect(wrapper.vm.$router.currentRoute.name).toEqual(RoutesConfig.home.name);
   });
 });

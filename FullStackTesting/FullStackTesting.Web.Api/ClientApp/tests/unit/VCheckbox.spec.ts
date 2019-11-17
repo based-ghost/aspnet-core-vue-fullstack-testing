@@ -9,68 +9,69 @@ import VCheckbox from '@/components/VCheckbox.render';
  * Test 4: component events are wired up and triggered as expected (change event should trigger custom checked event)
  * Test 5: trailing label <span> is present when props.trailingLabel is passed with a truthy string value
  */
-describe("VCheckbox.render.tsx (./components)", () => {
-  const mountVCheckbox = (options: any = null) => {
+describe("VCheckbox.render.tsx", () => {
+  const inputElQuery = 'input[type="checkbox"]';
+
+  const shallowMountVCheckbox = (options?: any) => {
     return shallowMount(VCheckbox, {
       ...options
     });
   };
 
   it("should mount and render properly", () => {
-    const wrapper = mountVCheckbox();
-    expect(wrapper.isVueInstance()).toBe(true);
-    expect(wrapper.find('input[type="checkbox"]').exists()).toBe(true);
+    const wrapper = shallowMountVCheckbox();
+    expect(wrapper.isVueInstance()).toBeTruthy();
+    expect(wrapper.find(inputElQuery).exists()).toBeTruthy();
   });
 
-  it("renders CSS properties when passed (props.wrapperClass, props.controlClass)", () => {
+  it("renders CSS properties when passed (props.wrapperClass, props.controlClass)", async () => {
     const className = "is-medium";
-    const wrapper = mountVCheckbox({
+    const wrapper = shallowMountVCheckbox({
       propsData: {
         wrapperClass: className,
         controlClass: className
       }
     });
-
     expect(wrapper.classes()).toContain(className);
-    expect(wrapper.find(`p.${className}`).exists()).toBe(true);
+    expect(wrapper.find(`p.${className}`).exists()).toBeTruthy();
   });
 
-  it("reflects the disabled attribute on the input element when props.disabled is passed as true", () => {
-    const wrapper = mountVCheckbox({
+  it("'disabled' attribute is rendered on input element when the 'disabled' prop is defined", async () => {
+    const wrapper = shallowMountVCheckbox({
       propsData: {
         disabled: true
       }
     });
-
-    expect(wrapper.find('input[type="checkbox"]').html()).toMatch("disabled");
+    const inputEl = wrapper.find(inputElQuery).element;
+    expect(inputEl.hasAttribute('disabled')).toBeTruthy();
   });
 
-  it("emits the custom @checked event with new target value when the @change event is triggered", () => {
-    const wrapper = mountVCheckbox({
+  it("emits the custom @checked event with new target value when the @change event is triggered", async () => {
+    const wrapper = shallowMountVCheckbox({
       propsData: {
         checked: false
       }
     });
 
-    const inputNode = wrapper.find('input[type="checkbox"]');
-    (inputNode.element as HTMLInputElement).value = "true";
-    (inputNode.element as HTMLInputElement).checked = true;
+    const inputNode = wrapper.find(inputElQuery);
+    const inputEl = inputNode.element as HTMLInputElement;
+
+    inputEl.value = "true";
+    inputEl.checked = true;
     inputNode.trigger("change");
 
     expect(wrapper.emitted("checked")).toBeTruthy();
     expect(wrapper.emitted("checked")[0]).toEqual([true]);
   });
 
-  it("trailing label <span> is present when props.trailingLabel is passed with a truthy string value", () => {
-    const label = "Test Label";
-    const labelSpanEl = `<span>${label}</span>`;
-
-    const wrapper = mountVCheckbox({
+  it("trailing label <span> is present when props.trailingLabel is passed with a truthy string value", async () => {
+    const trailingLabel = "Test Label";
+    const labelSpanEl = `<span>${trailingLabel}</span>`;
+    const wrapper = shallowMountVCheckbox({
       propsData: {
-        trailingLabel: label
+        trailingLabel
       }
     });
-
     expect(wrapper.html()).toMatch(labelSpanEl);
   });
 });

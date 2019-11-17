@@ -9,25 +9,26 @@ import { RoutesConfig } from '@/config/routes.config';
  * Test 1: component should mount and render properly
  * Test 2: router-link anchor elements should be generated for each route defined in global routesConfig object
  */
-describe("NavBar.vue (./components)", () => {
-  const mountNavBar = () => {
+describe("NavBar.vue", () => {
+  const navbarParentElId = "#nav";
+
+  const shallowMountNavbar = () => {
     return shallowMount(Navbar, {
       router
     });
   };
 
-  it("should mount and render properly", () => {
-    const wrapper = mountNavBar();
-    expect(wrapper.isVueInstance()).toBe(true);
-    expect(wrapper.find("#nav").exists()).toBe(true);
+  it("should mount and render properly", async () => {
+    const wrapper = shallowMountNavbar();
+    expect(wrapper.isVueInstance()).toBeTruthy();
+    expect(wrapper.find(navbarParentElId).exists()).toBeTruthy();
   });
 
-  it("router-links should be rendered for each route defined in global RoutesConfig object", () => {
-    const wrapper = mountNavBar();
+  it("router-links should be rendered for each route defined in global RoutesConfig object", async () => {
+    const wrapper = shallowMountNavbar();
     const routerLinkIds = getObjectValues(RoutesConfig, "meta.id");
-
     routerLinkIds.forEach((anchorId) => {
-      expect(wrapper.find(`#${anchorId}`).exists()).toBe(true);
+      expect(wrapper.find(`#${anchorId}`).exists()).toBeTruthy();
     });
   });
 });
