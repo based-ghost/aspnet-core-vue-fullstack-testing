@@ -91,13 +91,9 @@ namespace FullStackTesting.Web.Api
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllers();
 
-                // initialize vue cli middleware
-#if DEBUG
                 if (System.Diagnostics.Debugger.IsAttached)
                     endpoints.MapToVueCliProxy("{*path}", new SpaOptions { SourcePath = _spaSourcePath }, "serve", regex: "running at");
                 else
-#endif
-                    // note: output of vue cli or quasar cli should be wwwroot
                     endpoints.MapFallbackToFile("index.html");
             });
         }
