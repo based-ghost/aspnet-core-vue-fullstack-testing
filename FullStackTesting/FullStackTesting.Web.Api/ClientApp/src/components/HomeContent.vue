@@ -4,21 +4,21 @@
     <p>
       For a guide and recipes on how to configure / customize this project,
       <br>check out the
-      <a :href="npmLinks.VUE_CLI" target="_blank" rel="noopener">vue-cli documentation</a>.
+      <a :href="npmLinks.VUE_CLI" target="_blank" rel="noopener noreferrer">vue-cli documentation</a>.
     </p>
     <h3>Frontend (Vue + TypeScript) Testing</h3>
     <ul>
       <li>
-        <a :href="npmLinks.UNIT_JEST" target="_blank" rel="noopener">unit-jest</a>
+        <a :href="npmLinks.UNIT_JEST" target="_blank" rel="noopener noreferrer">unit-jest</a>
       </li>
       <li>
-        <a :href="npmLinks.NIGHTWATCH" target="_blank" rel="noopener">e2e-nightwatch</a>
+        <a :href="npmLinks.NIGHTWATCH" target="_blank" rel="noopener noreferrer">e2e-nightwatch</a>
       </li>
     </ul>
     <h3>Backend (ASP.NET Core) Testing</h3>
     <ul>
       <li>
-        <a :href="npmLinks.X_UNIT" target="_blank" rel="noopener">xUnit.net</a>
+        <a :href="npmLinks.X_UNIT" target="_blank" rel="noopener noreferrer">xUnit.net</a>
       </li>
     </ul>
   </div>
