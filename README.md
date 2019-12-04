@@ -24,28 +24,22 @@ Prototype application with a Vue.js client that has significant unit testing cov
 3. Open the .sln solution in Visual Studio and make sure all dependencies and Nuget dependencies are installed/restored - won't hurt to rebuild the entire solution (both projects)
 4. Two potential ways to start the entire project:
 	- I installed and configured the [`aspnetcore-vueclimiddleware`](https://github.com/EEParker/aspnetcore-vueclimiddleware) in the FullStackTesting.Web.Api project - in theory this makes things easier by allowing you to launch the Web Api and the Vue.js client from within Visual Studio by just running the project. I found its functionality to be spotty when used with .NET Core 2.x, however, after upgrading to .NET Core 3.1 and bump the Nugtet package to the 3.1 version I encountered zero issues.
-	
-	```csharp
-	   using VueCliMiddleware;
-	   
-	       // ...BOTTOM OF Startup.Configure (this code block replaces the legacy 2.x app.UseSpa block...)
 
-           app.UseEndpoints(endpoints =>
-           {
-               endpoints.MapControllers();
 
-               // initialize vue cli middleware
-   #if DEBUG
-               if (System.Diagnostics.Debugger.IsAttached)
-                   endpoints.MapToVueCliProxy("{*path}", new SpaOptions { SourcePath = "ClientApp" }, "serve", regex: "running at");
-               else
-   #endif
-               // note: output of vue cli or quasar cli should be wwwroot
-               endpoints.MapFallbackToFile("index.html");
-           });
-	```
-	
-	- You can choose to not use this the way it is currently configured and instead launch the front-end and back-end independently and proxy requests to your specified port.
+```csharp
+using VueCliMiddleware;
+
+app.UseEndpoints(endpoints => {
+    endpoints.MapControllers();
+
+    if (System.Diagnostics.Debugger.IsAttached)
+        endpoints.MapToVueCliProxy("{*path}", new SpaOptions { SourcePath = _spaSourcePath }, "serve", regex: "running at");
+    else
+        endpoints.MapFallbackToFile("index.html");
+});
+```
+
+- You can choose to not use this the way it is currently configured and instead launch the front-end and back-end independently and proxy requests to your specified port.
 
 ## Scripts (ClientApp)
 
