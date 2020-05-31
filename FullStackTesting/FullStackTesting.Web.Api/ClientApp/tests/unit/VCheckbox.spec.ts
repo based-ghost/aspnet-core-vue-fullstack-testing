@@ -20,7 +20,7 @@ describe("VCheckbox.render.tsx", () => {
 
   it("should mount and render properly", () => {
     const wrapper = shallowMountVCheckbox();
-    expect(wrapper.isVueInstance()).toBeTruthy();
+    expect(wrapper).toBeTruthy();
     expect(wrapper.find(inputElQuery).exists()).toBeTruthy();
   });
 
@@ -42,6 +42,7 @@ describe("VCheckbox.render.tsx", () => {
         disabled: true
       }
     });
+
     const inputEl = wrapper.find(inputElQuery).element;
     expect(inputEl.hasAttribute('disabled')).toBeTruthy();
   });

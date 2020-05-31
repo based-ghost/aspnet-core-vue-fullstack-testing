@@ -1,47 +1,58 @@
-import { shallowMount } from '@vue/test-utils';
+import { shallowMount, ThisTypedShallowMountOptions } from '@vue/test-utils';
 import Spinner from '@/components/Spinner.vue';
+import '@testing-library/jest-dom';
 
 /**
  * Component: Spinner.vue
- * Test 1: functional components should not be a Vue instance
- * Test 2: component renders properly
+ * Test 1: functional component is instantiated correctly
+ * Test 2: component renders properly with element having id attribute with value of 'load-spinner'
  * Test 3: props.show is FALSE - component should not be visible
  * Test 4: props.show is TRUE - component should be visible
  */
 describe("Spinner.vue", () => {
   const spinnerParentElId = "#load-spinner";
 
-  it("should NOT be a Vue instance (functional component)", async () => {
-    const wrapper = shallowMount(Spinner);
-    expect(wrapper.isVueInstance()).toBeFalsy();
+  const shallowMountSpinner = (
+    options?: ThisTypedShallowMountOptions<Spinner>
+  ) => {
+    return shallowMount(Spinner, {
+      ...options
+    });
+  };
+
+  it("is instantiated correctly", async () => {
+    const wrapper = shallowMountSpinner();
+    expect(wrapper).toBeTruthy();
   });
 
   it("should render properly", async () => {
-    const wrapper = shallowMount(Spinner);
+    const wrapper = shallowMountSpinner();
     expect(wrapper.find(spinnerParentElId).exists()).toBeTruthy();
   });
 
   it("when props.show is false v-show directive is functional and display style should render none", async () => {
-    const show = false;
-    const wrapper = shallowMount(Spinner, {
+    const wrapper = shallowMountSpinner({
       context: {
         props: {
-          show
+          show: false
         }
       }
     });
-    expect(wrapper.find(spinnerParentElId).isVisible()).toBe(show);
+
+    const spinnerParentEl = wrapper.find(spinnerParentElId).element;
+    expect(spinnerParentEl).not.toBeVisible();
   });
 
   it("when props.show is true v-show directive is functional and display style should render block (visible)", async () => {
-    const show = true;
-    const wrapper = shallowMount(Spinner, {
+    const wrapper = shallowMountSpinner({
       context: {
         props: {
-          show
+          show: true
         }
       }
     });
-    expect(wrapper.find(spinnerParentElId).isVisible()).toBe(show);
+
+    const spinnerParentEl = wrapper.find(spinnerParentElId).element;
+    expect(spinnerParentEl).toBeVisible();
   });
 });

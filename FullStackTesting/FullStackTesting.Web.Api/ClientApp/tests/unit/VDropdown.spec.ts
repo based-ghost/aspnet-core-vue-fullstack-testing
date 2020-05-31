@@ -27,8 +27,9 @@ describe("VDropdown.render.tsx", () => {
         options: dropdownTestData
       }
     });
-    expect(wrapper.isVueInstance()).toBe(true);
-    expect(wrapper.find(".dropdown").exists()).toBe(true);
+
+    expect(wrapper).toBeTruthy();
+    expect(wrapper.find(".dropdown").exists()).toBeTruthy();
   });
 
   it("custom ref attributes exist and are functional on component (dropdownButton, dropdownMenu)", async () => {
@@ -37,8 +38,9 @@ describe("VDropdown.render.tsx", () => {
         options: dropdownTestData
       }
     });
-    expect(wrapper.find({ ref: "dropdownButton" }).exists()).toBe(true);
-    expect(wrapper.find({ ref: "dropdownMenu" }).exists()).toBe(true);
+
+    expect(wrapper.findComponent({ ref: "dropdownButton" }).exists()).toBeTruthy();
+    expect(wrapper.findComponent({ ref: "dropdownMenu" }).exists()).toBeTruthy();
   });
 
   it("renders CSS properties when passed (props.wrapperClass, props.buttonClass)", async () => {
@@ -50,8 +52,9 @@ describe("VDropdown.render.tsx", () => {
         buttonClass: className
       }
     });
+
     expect(wrapper.classes()).toContain(className);
-    expect(wrapper.find(`button.${className}`).exists()).toBe(true);
+    expect(wrapper.find(`button.${className}`).exists()).toBeTruthy();
   });
 
   it("detects if individual options are singleton or object, and detects changes to the options property", async () => {
@@ -80,7 +83,7 @@ describe("VDropdown.render.tsx", () => {
 
     // When $data.open === true, the component adds 'is-active' class to root component element
     const isActiveClass = "is-active";
-    const buttonNode = wrapper.find({ ref: "dropdownButton" });
+    const buttonNode = wrapper.findComponent({ ref: "dropdownButton" });
 
     // $data.open should default to false (menu not visible)
     expect(wrapper.vm.open).toEqual(false);

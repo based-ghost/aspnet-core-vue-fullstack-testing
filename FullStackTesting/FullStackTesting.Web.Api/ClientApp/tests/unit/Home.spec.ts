@@ -17,7 +17,7 @@ describe('Home.vue', () => {
 
   it('should mount and render properly', async () => {
     const wrapper = shallowMountHome();
-    expect(wrapper.isVueInstance()).toBeTruthy();
+    expect(wrapper).toBeTruthy();
     expect(wrapper.find('img').exists()).toBeTruthy();
     expect(wrapper.find('h1.main-title').exists()).toBeTruthy();
   });

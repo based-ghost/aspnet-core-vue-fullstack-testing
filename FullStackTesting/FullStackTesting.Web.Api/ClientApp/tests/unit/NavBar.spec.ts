@@ -20,13 +20,14 @@ describe("NavBar.vue", () => {
 
   it("should mount and render properly", async () => {
     const wrapper = shallowMountNavbar();
-    expect(wrapper.isVueInstance()).toBeTruthy();
+    expect(wrapper).toBeTruthy();
     expect(wrapper.find(navbarParentElId).exists()).toBeTruthy();
   });
 
   it("router-links should be rendered for each route defined in global RoutesConfig object", async () => {
     const wrapper = shallowMountNavbar();
     const routerLinkIds = getObjectValues(RoutesConfig, "meta.id");
+
     routerLinkIds.forEach((anchorId) => {
       expect(wrapper.find(`#${anchorId}`).exists()).toBeTruthy();
     });

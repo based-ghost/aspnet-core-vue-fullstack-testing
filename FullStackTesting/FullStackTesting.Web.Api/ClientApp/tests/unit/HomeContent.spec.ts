@@ -16,8 +16,8 @@ describe('HomeContent.vue', () => {
   });
 
   it('should mount and render properly', async () => {
-    expect(wrapper.isVueInstance()).toBe(true);
-    expect(wrapper.find('.home-content').exists()).toBe(true);
+    expect(wrapper).toBeTruthy();
+    expect(wrapper.find('.home-content').exists()).toBeTruthy();
   });
 
   it('property "mainSubTitle" renders text value correctly', async () => {
