@@ -32,6 +32,7 @@ describe("VCheckbox.render.tsx", () => {
         controlClass: className
       }
     });
+
     expect(wrapper.classes()).toContain(className);
     expect(wrapper.find(`p.${className}`).exists()).toBeTruthy();
   });
@@ -57,22 +58,24 @@ describe("VCheckbox.render.tsx", () => {
     const inputNode = wrapper.find(inputElQuery);
     const inputEl = inputNode.element as HTMLInputElement;
 
-    inputEl.value = "true";
     inputEl.checked = true;
+    inputEl.value = inputEl.checked.toString();
+
     inputNode.trigger("change");
 
-    expect(wrapper.emitted("checked")).toBeTruthy();
-    expect(wrapper.emitted("checked")[0]).toEqual([true]);
+    expect(wrapper.emitted().checked).toBeTruthy();
   });
 
   it("trailing label <span> is present when props.trailingLabel is passed with a truthy string value", async () => {
     const trailingLabel = "Test Label";
     const labelSpanEl = `<span>${trailingLabel}</span>`;
+
     const wrapper = shallowMountVCheckbox({
       propsData: {
         trailingLabel
       }
     });
+
     expect(wrapper.html()).toMatch(labelSpanEl);
   });
 });

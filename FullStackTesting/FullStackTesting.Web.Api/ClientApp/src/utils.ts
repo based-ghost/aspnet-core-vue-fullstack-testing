@@ -7,39 +7,6 @@ import { EventBus } from "./event-bus";
 export const isArrayWithLength = (test: any): boolean => (Array.isArray(test) && !!test.length);
 
 /**
- * Gets the value of an object property at the designated path
- * Returns array of values in case first level of object has multiple keys
- */
-export const getObjectValues = (obj: any, path: string): any[] => {
-  let vals = [];
-  const paths = (path || "").trim().split(".");
-
-  if (!isArrayWithLength(paths) || !obj || !Object.keys(obj).length) {
-    return vals;
-  }
-
-  Object.keys(obj).forEach((key) => {
-    let subObj = obj[key];
-
-    for (let i = 0; i < paths.length; i++) {
-      if (
-        subObj !== null &&
-        typeof subObj[paths[i]] !== "undefined" &&
-        subObj[paths[i]] !== null
-      ) {
-        subObj = subObj[paths[i]];
-      }
-    }
-
-    if (subObj) {
-      vals.push(subObj);
-    }
-  });
-
-  return vals;
-};
-
-/**
  * Trigger a vue-snotify snackbar notifcation that the axios request was successful
  */
 export const alertAxiosSuccess = (

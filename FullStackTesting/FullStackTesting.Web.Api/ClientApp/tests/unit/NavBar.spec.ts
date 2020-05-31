@@ -1,7 +1,6 @@
 import { shallowMount } from '@vue/test-utils';
 import router from "@/router";
 import Navbar from '@/components/NavBar.vue';
-import { getObjectValues } from '@/utils';
 import { RoutesConfig } from '@/config/routes.config';
 
 /**
@@ -26,9 +25,9 @@ describe("NavBar.vue", () => {
 
   it("router-links should be rendered for each route defined in global RoutesConfig object", async () => {
     const wrapper = shallowMountNavbar();
-    const routerLinkIds = getObjectValues(RoutesConfig, "meta.id");
+    const routerLinkIds: string[] = Object.keys(RoutesConfig).map((key: string) => RoutesConfig[key].meta.id);
 
-    routerLinkIds.forEach((anchorId) => {
+    routerLinkIds.forEach((anchorId: string) => {
       expect(wrapper.find(`#${anchorId}`).exists()).toBeTruthy();
     });
   });
