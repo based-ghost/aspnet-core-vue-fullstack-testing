@@ -58,16 +58,16 @@
           </div>
         </div>
         <div class="modal-dialog-buttons">
-          <button 
-            type="button" 
-            class="button is-block" 
+          <button
+            type="button"
+            class="button is-block"
             @click="handleCloseModal()"
           >
             CANCEL
           </button>
-          <button 
-            type="button" 
-            class="button is-block" 
+          <button
+            type="button"
+            class="button is-block"
             @click="handleAddEmployee()"
           >
             OK
@@ -84,8 +84,8 @@ import { alertAxiosSuccess } from "@/utils";
 import { IDropdownOption, IEmployee } from "@/types";
 import VCheckbox from "@/components/VCheckbox.render";
 import VDropdown from "@/components/VDropdown.render";
+import { dropdownTestData, modalIDs } from "@/config/constants";
 import { EmployeeModule } from "@/store/modules/employee.module";
-import { dropdownTestData, modalIDs, ConfigData } from "@/config/constants";
 
 @Component({
   components: {
@@ -95,7 +95,7 @@ import { dropdownTestData, modalIDs, ConfigData } from "@/config/constants";
 })
 export default class AddEmployee extends Vue {
   public invalidInputs: boolean = false;
-  public readonly modalIDs: ConfigData = modalIDs;
+  public readonly modalIDs: Record<string, string> = modalIDs;
   public readonly dropdownOptions: IDropdownOption[] = dropdownTestData;
 
   @Prop({ default: "New Employee" }) public readonly titleMsg: string;

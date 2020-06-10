@@ -13,9 +13,10 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { RoutesConfig } from "@/config/routes.config";
+import { RouteConfig } from "vue-router";
 
 @Component
 export default class NavBar extends Vue {
-  public readonly routesConfig: RoutesConfig = RoutesConfig;
+  public readonly routesConfig: Record<string, RouteConfig> = RoutesConfig;
 }
 </script>

@@ -11,13 +11,13 @@ export default class VDropdown extends Vue {
     dropdownButton: HTMLElement;
   };
 
-  @Prop({ default: () => [] }) public readonly options:             any[];
-  @Prop({ default: false })    public readonly disabled:            boolean;
-  @Prop({ default: "label" })  public readonly labelKey:            string;
-  @Prop({ default: "" })       public readonly placeholder:         string;
-  @Prop({ default: "" })       public readonly wrapperClass:        string;
-  @Prop({ default: "" })       public readonly buttonClass:         string;
-  @Prop({ default: "" })       public readonly selectedOptionLabel: string;
+  @Prop({ default: () => [] }) public readonly options: any[];
+  @Prop({ default: false }) public readonly disabled: boolean;
+  @Prop({ default: "label" }) public readonly labelKey: string;
+  @Prop({ default: "" }) public readonly placeholder: string;
+  @Prop({ default: "" }) public readonly wrapperClass: string;
+  @Prop({ default: "" }) public readonly buttonClass: string;
+  @Prop({ default: "" }) public readonly selectedOptionLabel: string;
 
   public open: boolean = false;
 
@@ -44,7 +44,9 @@ export default class VDropdown extends Vue {
         </button>
         <div class="dropdown-menu" ref="dropdownMenu" role="menu">
           <ul class="dropdown-content">
-            {this.options.map((option: any, index: number) => this.renderListOption(option, index))}
+            {this.options.map((option: any, index: number) =>
+              this.renderListOption(option, index)
+            )}
           </ul>
         </div>
       </div>
@@ -57,7 +59,10 @@ export default class VDropdown extends Vue {
       <li key={index}>
         <a
           role="button"
-          class={["dropdown-item", { "selected-option": optionLabel === this.selectedOptionLabel }]}
+          class={[
+            "dropdown-item",
+            { "selected-option": optionLabel === this.selectedOptionLabel },
+          ]}
           onClick={() => this.updateSelectedOption(option)}
         >
           {optionLabel}
@@ -83,13 +88,16 @@ export default class VDropdown extends Vue {
   }
 
   public keyDownHandler(e: KeyboardEvent): void {
-    if (e.keyCode === 38 || e.keyCode === 40) { // up and down keys
+    if (e.keyCode === 38 || e.keyCode === 40) {
+      // up and down keys
       this.toggleDropdownMenu();
       e.preventDefault();
-    } else if (e.keyCode === 27) { // Esc key
+    } else if (e.keyCode === 27) {
+      // Esc key
       this.$refs.dropdownButton.focus();
       this.hideDropdownMenu();
-    } else if (e.keyCode === 9) { // Tab key
+    } else if (e.keyCode === 9) {
+      // Tab key
       this.hideDropdownMenu();
     }
   }

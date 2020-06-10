@@ -14,7 +14,7 @@ class EmployeeService extends BaseService {
   }
 
   public static get Instance(): EmployeeService {
-    return (this.employeeService || (this.employeeService = new this(this.controller)));
+    return this.employeeService || (this.employeeService = new this(this.controller));
   }
 
   public async getAllEmployeesAsync(): Promise<IEmployee[]> {
@@ -23,24 +23,19 @@ class EmployeeService extends BaseService {
   }
 
   public async addEmployeeAsync(employee: IEmployee): Promise<any> {
-    const config: AxiosRequestConfig = {
-      params: { id: employee.id }
-    };
+    const config: AxiosRequestConfig = { params: { id: employee.id } };
     await this.$http.post("AddEmployeeAsync", employee, config);
   }
 
   public async deleteEmployeeAsync(employee: IEmployee): Promise<any> {
-    const config: AxiosRequestConfig = {
-      params: { id: employee.id }
-    };
+    const config: AxiosRequestConfig = { params: { id: employee.id } };
     await this.$http.delete("DeleteEmployeeAsync", config);
   }
 
   public async getEmployeeByIdAsync(id: number | null = null): Promise<IEmployee> {
-    const config: AxiosRequestConfig = {
-      params: { id }
-    };
+    const config: AxiosRequestConfig = { params: { id } };
     const { data } = await this.$http.get<IEmployee>("GetEmployeeByIdAsync", config);
+
     return data;
   }
 }

@@ -1,5 +1,4 @@
 /* eslint-disable no-param-reassign,import/no-extraneous-dependencies  */
-const path = require('path');
 
 module.exports = {
   configureWebpack: (config) => {

@@ -8,15 +8,13 @@ export const dropdownTestData: IDropdownOption[] = [
   { value: 4, label: "Information Technology" }
 ];
 
-export type ConfigData = { [key: string]: string };
-
 // object that holds all the different id's used to interact with modals from vue-js-modal package
-export const modalIDs = Object.freeze<ConfigData>({
+export const modalIDs = Object.freeze<Record<string, string>>({
   ADD_EMPLOYEE: "add-employee"
 });
 
 // object that holds link information
-export const npmLinksConfig = Object.freeze<ConfigData>({
+export const npmLinksConfig = Object.freeze<Record<string, string>>({
   VUE_CLI: "https://cli.vuejs.org",
   X_UNIT: "https://xunit.github.io/",
   UNIT_JEST: "https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-unit-jest",

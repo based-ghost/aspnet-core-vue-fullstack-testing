@@ -23,7 +23,11 @@ export const departmentInitialState = Object.freeze<IDropdownOption>({
   label: 'Claims',
 });
 
-@Module({ dynamic: true, store, name: "employee" })
+@Module({
+  store,
+  dynamic: true,
+  name: "employee"
+})
 class Employee extends VuexModule implements IEmployeeState {
   public employees: IEmployee[] =  { ...employeesInitialState };
   public activeEmployee: IEmployee = { ...activeEmployeeInitialState };
@@ -55,8 +59,8 @@ class Employee extends VuexModule implements IEmployeeState {
   public async GetAllEmployees(): Promise<Partial<IEmployeeState>> {
     try {
       const employees = await EmployeeApi.getAllEmployeesAsync();
-      return { 
-        employees 
+      return {
+        employees
       };
     } catch (e) {
       return {
@@ -72,11 +76,11 @@ class Employee extends VuexModule implements IEmployeeState {
     try {
       const employee = await EmployeeApi.getEmployeeByIdAsync(id);
       const employees = this.employees.splice(0, this.employees.length, employee || {});
-      return { 
-        employees 
+      return {
+        employees
       };
     } catch (e) {
-      return { 
+      return {
         employees: {
           ...employeesInitialState,
         },

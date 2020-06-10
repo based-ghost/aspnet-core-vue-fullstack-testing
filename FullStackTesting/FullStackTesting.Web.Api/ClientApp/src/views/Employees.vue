@@ -34,9 +34,9 @@
               </tr>
             </thead>
             <tbody>
-              <tr 
-                v-for="employee in employees" 
-                :key="employee.id" 
+              <tr
+                v-for="employee in employees"
+                :key="employee.id"
                 :id="`row-${employee.id}`"
               >
                 <td>{{employee.id}}</td>
@@ -74,9 +74,9 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { IEmployee } from "@/types";
+import { modalIDs } from "@/config/constants";
 import Spinner from "@/components/Spinner.vue";
 import AddEmployee from "@/components/AddEmployee.vue";
-import { modalIDs, ConfigData } from "@/config/constants";
 import { isArrayWithLength, alertAxiosSuccess } from "@/utils";
 import { EmployeeModule } from "@/store/modules/employee.module";
 
@@ -88,7 +88,7 @@ import { EmployeeModule } from "@/store/modules/employee.module";
 })
 export default class Employees extends Vue {
   public loading: boolean = false;
-  public readonly modalIDs: ConfigData = modalIDs;
+  public readonly modalIDs: Record<string, string> = modalIDs;
 
   get employees(): IEmployee[] {
     return EmployeeModule.employees;

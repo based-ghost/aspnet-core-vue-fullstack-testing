@@ -3,5 +3,5 @@ import Employees from './Employees.vue';
 
 export {
   Home,
-  Employees,
+  Employees
 };
