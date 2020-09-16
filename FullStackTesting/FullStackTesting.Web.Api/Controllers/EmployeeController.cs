@@ -35,6 +35,7 @@ namespace FullStackTesting.Web.Api.Controllers
         public async Task<IActionResult> GetEmployeeByIdAsync(int id)
         {
             var employee = await _employeeRepo.GetByIdAsync(id);
+
             if (employee == null)
                 return NotFound();
 
@@ -76,6 +77,7 @@ namespace FullStackTesting.Web.Api.Controllers
         public async Task<IActionResult> DeleteEmployeeAsync(int id)
         {
             var employee = await _employeeRepo.GetByIdAsync(id);
+
             if (employee == null)
                 return NotFound();
 

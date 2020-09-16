@@ -61,9 +61,10 @@ namespace FullStackTesting.Web.Api
             else
             {
                 app.UseExceptionHandler("/Error");
-                app.UseHttpsRedirection();
                 app.UseHsts();
             }
+
+            app.UseCors(_corsPolicyName);
 
             app.UseExceptionHandler(builder =>
             {
@@ -82,19 +83,32 @@ namespace FullStackTesting.Web.Api
                 });
             });
 
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
             app.UseRouting();
-
-            app.UseCors(_corsPolicyName);
 
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllers();
 
                 if (System.Diagnostics.Debugger.IsAttached)
-                    endpoints.MapToVueCliProxy("{*path}", new SpaOptions { SourcePath = _spaSourcePath }, "serve", regex: "running at");
+                {
+                    endpoints.MapToVueCliProxy(
+                       "{*path}",
+                       new SpaOptions { SourcePath = _spaSourcePath },
+                       "serve",
+                       regex: "running at"
+                    );
+                }
                 else
+                {
                     endpoints.MapFallbackToFile("index.html");
+                }
+            });
+
+            app.UseSpa(spa =>
+            {
+                spa.Options.SourcePath = "ClientApp";
             });
         }
     }
