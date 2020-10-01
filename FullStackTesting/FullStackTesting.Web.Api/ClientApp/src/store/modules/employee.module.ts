@@ -76,6 +76,7 @@ class Employee extends VuexModule implements IEmployeeState {
     try {
       const employee = await EmployeeApi.getEmployeeByIdAsync(id);
       const employees = this.employees.splice(0, this.employees.length, employee || {});
+
       return {
         employees
       };

@@ -80,12 +80,12 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { alertAxiosSuccess } from "@/utils";
-import { IDropdownOption, IEmployee } from "@/types";
-import VCheckbox from "@/components/VCheckbox.render";
-import VDropdown from "@/components/VDropdown.render";
-import { dropdownTestData, modalIDs } from "@/config/constants";
-import { EmployeeModule } from "@/store/modules/employee.module";
+import { alertAxiosSuccess } from "../utils";
+import { IDropdownOption, IEmployee } from "../types";
+import VCheckbox from "./VCheckbox.render";
+import VDropdown from "./VDropdown.render";
+import { dropdownTestData, modalIDs } from "../config/constants";
+import { EmployeeModule } from "../store/modules/employee.module";
 
 @Component({
   components: {

@@ -73,12 +73,12 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { IEmployee } from "@/types";
-import { modalIDs } from "@/config/constants";
+import { IEmployee } from "../types";
+import { modalIDs } from "../config/constants";
 import Spinner from "@/components/Spinner.vue";
 import AddEmployee from "@/components/AddEmployee.vue";
-import { isArrayWithLength, alertAxiosSuccess } from "@/utils";
-import { EmployeeModule } from "@/store/modules/employee.module";
+import { isArrayWithLength, alertAxiosSuccess } from "../utils";
+import { EmployeeModule } from "../store/modules/employee.module";
 
 @Component({
   components: {
@@ -107,11 +107,10 @@ export default class Employees extends Vue {
   }
 
   public deleteEmployee(employee: IEmployee): void {
-    if (this.loading) {
-      return;
-    }
+    if (this.loading) return;
 
     this.loading = true;
+
     EmployeeModule.DeleteEmployee(employee)
       .then(() => {
         EmployeeModule.GetAllEmployees()
@@ -130,11 +129,10 @@ export default class Employees extends Vue {
   }
 
   public handleGetEmployees(): void {
-    if (this.loading) {
-      return;
-    }
+    if (this.loading) return;
 
     this.loading = true;
+
     EmployeeModule.GetAllEmployees().then(() => {
       setTimeout(() => {
         this.loading = false;

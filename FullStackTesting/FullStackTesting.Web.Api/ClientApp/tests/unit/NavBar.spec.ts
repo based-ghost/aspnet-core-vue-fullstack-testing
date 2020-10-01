@@ -1,12 +1,12 @@
 import { shallowMount } from '@vue/test-utils';
 import router from "@/router";
+import { RouteConfig } from 'vue-router';
 import Navbar from '@/components/NavBar.vue';
-import { RoutesConfig } from '@/config/routes.config';
 
 /**
  * Component: NavBar.vue
  * Test 1: component should mount and render properly
- * Test 2: router-link anchor elements should be generated for each route defined in global routesConfig object
+ * Test 2: router-link anchor elements should be generated for each route defined in global $router.options.routes array
  */
 describe("NavBar.vue", () => {
   const navbarParentElId = "#nav";
@@ -23,12 +23,12 @@ describe("NavBar.vue", () => {
     expect(wrapper.find(navbarParentElId).exists()).toBeTruthy();
   });
 
-  it("router-links should be rendered for each route defined in global RoutesConfig object", async () => {
+  it("router-links should be rendered for each route defined in global $router.options.routes object", async () => {
     const wrapper = shallowMountNavbar();
-    const routerLinkIds: string[] = Object.keys(RoutesConfig).map((key: string) => RoutesConfig[key].meta.id);
+    const { routes } = wrapper.vm.$router.options;
 
-    routerLinkIds.forEach((anchorId: string) => {
-      expect(wrapper.find(`#${anchorId}`).exists()).toBeTruthy();
+    routes.forEach((route: RouteConfig) => {
+      expect(wrapper.find(`#${route.meta.id}`).exists()).toBeTruthy();
     });
   });
 });

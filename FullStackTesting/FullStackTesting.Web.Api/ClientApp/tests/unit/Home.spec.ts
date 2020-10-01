@@ -1,7 +1,6 @@
 import { shallowMount } from '@vue/test-utils';
 import router from "@/router";
 import { Home } from '@/views';
-import { RoutesConfig } from '@/config/routes.config';
 
 /**
  * Component: Home.vue
@@ -24,6 +23,9 @@ describe('Home.vue', () => {
 
   it('should enter/reflect the correct route', async () => {
     const wrapper = shallowMountHome();
-    expect(wrapper.vm.$router.currentRoute.name).toEqual(RoutesConfig.home.name);
+    const currentRouteName = wrapper.vm.$router.currentRoute.name;
+    const homeRouteName = wrapper.vm.$router.options.routes[0].name;
+
+    expect(currentRouteName).toEqual(homeRouteName);
   });
 });

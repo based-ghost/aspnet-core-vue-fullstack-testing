@@ -4,7 +4,7 @@ import { EventBus } from "./event-bus";
 /**
  * Determine if obect is an array and contains items
  */
-export const isArrayWithLength = (test: any): boolean => (Array.isArray(test) && !!test.length);
+export const isArrayWithLength = (test: any): boolean => Array.isArray(test) && !!test.length;
 
 /**
  * Trigger a vue-snotify snackbar notifcation that the axios request was successful
