@@ -10,7 +10,7 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
-    "axios": "^0.20.0",
+    "axios": "^0.21.1",
     "bulma": "^0.9.1",
     "register-service-worker": "^1.7.1",
     "vue": "^2.6.12",
