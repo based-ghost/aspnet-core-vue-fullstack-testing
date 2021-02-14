@@ -14,10 +14,7 @@ namespace FullStackTesting.Web.Api.Controllers
     {
         private readonly IEmployeeRepository _employeeRepo;
 
-        public EmployeeController(IEmployeeRepository employeeRepo)
-        {
-            _employeeRepo = employeeRepo;
-        }
+        public EmployeeController(IEmployeeRepository employeeRepo) => _employeeRepo = employeeRepo;
 
         // GET api/Employee/GetAllEmployeesAsync
         [HttpGet]

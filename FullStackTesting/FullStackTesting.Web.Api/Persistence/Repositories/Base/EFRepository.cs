@@ -10,10 +10,7 @@ namespace FullStackTesting.Web.Api.Persistence
     {
         protected readonly AppDbContext _appDbContext;
 
-        protected EFRepository(AppDbContext appDbContext)
-        {
-            _appDbContext = appDbContext;
-        }
+        protected EFRepository(AppDbContext appDbContext) => _appDbContext = appDbContext;
 
         public async Task<List<T>> GetAllAsync()
         {

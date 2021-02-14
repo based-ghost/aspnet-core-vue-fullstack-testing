@@ -64,8 +64,6 @@ namespace FullStackTesting.Web.Api
                 app.UseHsts();
             }
 
-            app.UseCors(_corsPolicyName);
-
             app.UseExceptionHandler(builder =>
             {
                 builder.Run(async context =>
@@ -83,6 +81,7 @@ namespace FullStackTesting.Web.Api
                 });
             });
 
+            app.UseCors(_corsPolicyName);
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
@@ -108,7 +107,7 @@ namespace FullStackTesting.Web.Api
 
             app.UseSpa(spa =>
             {
-                spa.Options.SourcePath = "ClientApp";
+                spa.Options.SourcePath = _spaSourcePath;
             });
         }
     }

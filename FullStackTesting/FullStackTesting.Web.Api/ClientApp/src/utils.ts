@@ -2,9 +2,18 @@ import { AxiosError } from "axios";
 import { EventBus } from "./event-bus";
 
 /**
- * Determine if obect is an array and contains items
+ * Tests if object is an array with at least 1 item.
  */
-export const isArrayWithLength = (test: any): boolean => Array.isArray(test) && !!test.length;
+export function isArrayWithLength(test: any): boolean {
+  return Array.isArray(test) && !!test.length;
+}
+
+/**
+ * Tests for a 'plain, classic' object (non-primitive type that is not an array).
+ */
+export function isPlainObject(test: any): boolean {
+  return test !== null && typeof test === 'object' && !Array.isArray(test);
+}
 
 /**
  * Trigger a vue-snotify snackbar notifcation that the axios request was successful

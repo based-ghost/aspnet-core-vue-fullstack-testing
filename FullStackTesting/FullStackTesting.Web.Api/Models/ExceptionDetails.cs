@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json;
 
 namespace FullStackTesting.Web.Api.Models
 {
@@ -13,6 +13,6 @@ namespace FullStackTesting.Web.Api.Models
             Message = message ?? "No error message found in exception.";
         }
 
-        public override string ToString() => JsonConvert.SerializeObject(this);
+        public override string ToString() => JsonSerializer.Serialize(this);
     }
 }

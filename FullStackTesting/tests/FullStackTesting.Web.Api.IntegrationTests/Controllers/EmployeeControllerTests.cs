@@ -12,10 +12,7 @@ namespace FullStackTesting.Web.Api.IntegrationTests.Controllers
     {
         private readonly HttpClient _client;
 
-        public EmployeeControllerTests(CustomWebApplicationFactory<Startup> factory)
-        {
-            _client = factory.CreateClient();
-        }
+        public EmployeeControllerTests(CustomWebApplicationFactory<Startup> factory) => _client = factory.CreateClient();
 
         [Fact]
         public async Task CanGetAllEmployeesAsync()

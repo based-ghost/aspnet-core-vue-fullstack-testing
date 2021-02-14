@@ -1,5 +1,6 @@
 ﻿import Vue, { VNode } from "vue";
 import { Component, Prop } from "vue-property-decorator";
+import { isArrayWithLength, isPlainObject } from '../utils';
 
 /**
  * React render function in Vue - using TypeScript (.tsx) - single file
@@ -22,7 +23,7 @@ export default class VDropdown extends Vue {
   public open: boolean = false;
 
   get isArrayOfObjects(): boolean {
-    return this.options && this.options[0] === Object(this.options[0]);
+    return isArrayWithLength(this.options) && this.options.every(isPlainObject);
   }
 
   public render(): VNode {

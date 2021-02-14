@@ -27,7 +27,9 @@ namespace FullStackTesting.Web.Api.Persistence
         private void AddDbGeneratedInfo()
         {
             var utcNowDate = DateTime.UtcNow;
-            foreach (var entry in ChangeTracker.Entries().GetAddedOrModifiedBaseEntities())
+            var entityEntries = ChangeTracker.Entries().GetAddedOrModifiedBaseEntities();
+
+            foreach (var entry in entityEntries)
             {
                 ((BaseEntity)entry.Entity).Modified = utcNowDate;
                 if (entry.State.Equals(EntityState.Added))
