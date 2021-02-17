@@ -11,9 +11,9 @@ import { snotifyDefaults } from '@/config/vue-snotify.config';
 
 Vue.config.productionTip = false;
 
-Vue.use(VModal)
-   .use(vClickOutside)
-   .use(Snotify, snotifyDefaults);
+Vue.use(VModal);
+Vue.use(vClickOutside);
+Vue.use(Snotify, snotifyDefaults);
 
 new Vue({
   router,

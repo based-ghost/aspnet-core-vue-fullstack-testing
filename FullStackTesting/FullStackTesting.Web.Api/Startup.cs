@@ -82,6 +82,7 @@ namespace FullStackTesting.Web.Api
             });
 
             app.UseCors(_corsPolicyName);
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
@@ -95,19 +96,15 @@ namespace FullStackTesting.Web.Api
                     endpoints.MapToVueCliProxy(
                        "{*path}",
                        new SpaOptions { SourcePath = _spaSourcePath },
-                       "serve",
-                       regex: "running at"
+                       npmScript: "serve",
+                       regex: "running at",
+                       forceKill: true
                     );
                 }
                 else
                 {
                     endpoints.MapFallbackToFile("index.html");
                 }
-            });
-
-            app.UseSpa(spa =>
-            {
-                spa.Options.SourcePath = _spaSourcePath;
             });
         }
     }
