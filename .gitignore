@@ -31,8 +31,8 @@ bld/
 .vs/
 /wwwroot/dist/
 /ClientApp/dist/
-/GhostUI/wwwroot/dist
-/GhostUI/ClientApp/dist
+/FullStackTesting/FullStackTesting.Web.Api/wwwroot/dist
+/FullStackTesting/FullStackTesting.Web.Api/ClientApp/dist
 
 # MSTest test Results
 [Tt]est[Rr]esult*/
