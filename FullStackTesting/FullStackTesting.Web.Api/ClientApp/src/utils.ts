@@ -20,7 +20,7 @@ export function isPlainObject(test: any): boolean {
  */
 export const alertAxiosSuccess = (
   body: string,
-  title: string = "Success",
+  title: string = 'Success',
   timeout: number = 0
 ): void => {
   setTimeout(() => {
@@ -32,44 +32,55 @@ export const alertAxiosSuccess = (
  * Trigger a vue-snotify snackbar notifcation that the axios request failed
  * Also logs full response in console
  */
-export const alertAxiosError = (error: AxiosError<any>): void => {
+export const alertAxiosError = (error: AxiosError): void => {
+  // Error Message Object
   const message = {
-    body: "Internal Server Error",
-    request: "",
+    body: 'Internal Server Error',
+    request: '',
     status: 500
   };
 
-  if (typeof error !== "undefined") {
-    if (error.hasOwnProperty("message")) {
-      message.body = error.message;
-    }
+  // Setup Error Message
+  if (
+    typeof error !== 'undefined' &&
+    Object.prototype.hasOwnProperty.call(error, 'message')
+  ) {
+    message.body = error.message;
   }
 
-  if (typeof error.response !== "undefined") {
-    if (error.response.status === 401) {
-      message.body = "UnAuthorized";
-    } else if (error.response.status === 404) {
-      message.body = "API Route is Missing or Undefined";
-    } else if (error.response.status === 405) {
-      message.body = "API Route Method Not Allowed";
-    } else if (error.response.status >= 500) {
-      message.body = "Internal Server Error";
+  if (typeof error.response !== 'undefined') {
+    // Setup Generic Response Messages
+    switch (error.response.status) {
+      case 401:
+        message.body = 'UnAuthorized';
+        break;
+      case 404:
+        message.body = 'API Route is Missing or Undefined';
+        break;
+      case 405:
+        message.body = 'API Route Method Not Allowed';
+        break;
+      case 422:
+        break;
+      case 500:
+      default:
+        message.body = 'Internal Server Error';
+        break;
     }
 
+    // Assign error status code
     if (error.response.status > 0) {
       message.status = error.response.status;
     }
 
+    // Try to Use the Response Message
     if (
-      error.hasOwnProperty("response") &&
-      error.response.hasOwnProperty("data")
+      Object.prototype.hasOwnProperty.call(error, 'response') &&
+      Object.prototype.hasOwnProperty.call(error.response, 'data') &&
+      Object.prototype.hasOwnProperty.call(error.response.data, 'message') &&
+      !!error.response.data.message.length
     ) {
-      if (
-        error.response.data.hasOwnProperty("message") &&
-        error.response.data.message.length > 0
-      ) {
-        message.body = error.response.data.message;
-      }
+      message.body = error.response.data.message;
     }
   }
 

@@ -13,7 +13,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import HomeContent from '@/components/HomeContent.vue';
+import { HomeContent } from '@/components';
 
 @Component({
   components: {

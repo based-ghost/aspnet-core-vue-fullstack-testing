@@ -16,10 +16,10 @@ export abstract class BaseService {
     });
 
     this.$http.interceptors.response.use(
-      (response: AxiosResponse<any>) => {
+      (response: AxiosResponse) => {
         return response;
       },
-      (error: AxiosError<any>) => {
+      (error: AxiosError) => {
         alertAxiosError(error);
         return Promise.reject(error);
       }

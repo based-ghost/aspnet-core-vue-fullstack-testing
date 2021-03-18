@@ -1,7 +1,7 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils';
-import { dropdownTestData } from '@/config/constants';
-import VDropdown from '@/components/VDropdown.render';
-import vClickOutside from '@/plugins/vue-click-outside';
+import { shallowMount, createLocalVue, ThisTypedShallowMountOptions } from '@vue/test-utils';
+import { VDropdown } from '@/components';
+import { vClickOutside } from '@/plugins';
+import { dropdownTestData } from '@/config';
 
 /**
  * Component: VDropdown.render.tsx
@@ -12,12 +12,15 @@ import vClickOutside from '@/plugins/vue-click-outside';
  * Test 5: onClick and onKeydown events on button control correctly toggle $data.open; if $data.open === true, the options menu should be visible in DOM
  */
 describe("VDropdown.render.tsx", () => {
-  const shallowMountVDropdown = (options?: any) => {
+  const shallowMountVDropdown = (
+    options?: ThisTypedShallowMountOptions<VDropdown>
+  ) => {
     const localVue = createLocalVue();
     localVue.use(vClickOutside);
+
     return shallowMount(VDropdown, {
       localVue,
-      ...options
+      ...options,
     });
   };
 
@@ -29,7 +32,7 @@ describe("VDropdown.render.tsx", () => {
     });
 
     expect(wrapper).toBeTruthy();
-    expect(wrapper.find(".dropdown").exists()).toBeTruthy();
+    expect(wrapper.find(".dropdown").exists()).toBe(true);
   });
 
   it("custom ref attributes exist and are functional on component (dropdownButton, dropdownMenu)", async () => {
@@ -54,7 +57,7 @@ describe("VDropdown.render.tsx", () => {
     });
 
     expect(wrapper.classes()).toContain(className);
-    expect(wrapper.find(`button.${className}`).exists()).toBeTruthy();
+    expect(wrapper.find(`button.${className}`).exists()).toBe(true);
   });
 
   it("detects if individual options are singleton or object, and detects changes to the options property", async () => {
@@ -92,17 +95,13 @@ describe("VDropdown.render.tsx", () => {
     expect(wrapper.classes(isActiveClass)).toBe(false);
 
     // Simulate click event on dropdown button control (update class attribute on the element instance)
-    buttonNode.trigger("click");
-
     // $data.open should reflect true after initial toggle and menu should then be visible
+    await buttonNode.trigger("click");
     expect(wrapper.vm.open).toEqual(true);
-    // expect(wrapper.classes()).toContain(isActiveClass); THIS NO LONGER PASSES AFTER A RECENT UPDATE TO VUE TESTING UTILS
 
-    // Simulate onKeyDown event on dropdown button control (keyCode === 38 (up))
-    buttonNode.trigger("keydown.up");
-
+    // Simulate another click event
     // $data.open should get toggled and revert back to false
+    await buttonNode.trigger("click");
     expect(wrapper.vm.open).toEqual(false);
-    expect(wrapper.classes(isActiveClass)).toBe(false);
   });
 });

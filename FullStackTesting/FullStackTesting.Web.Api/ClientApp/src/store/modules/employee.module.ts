@@ -1,6 +1,6 @@
 ﻿import store from "@/store";
+import { EmployeeApi } from "@/api";
 import { IEmployee, IDropdownOption } from "@/types";
-import { EmployeeApi } from "@/api/employees.service";
 import { Module, VuexModule, Mutation, MutationAction, getModule, Action } from "vuex-module-decorators";
 
 export interface IEmployeeState {
@@ -26,7 +26,7 @@ export const departmentInitialState = Object.freeze<IDropdownOption>({
 @Module({
   store,
   dynamic: true,
-  name: "employee"
+  name: 'employee'
 })
 class Employee extends VuexModule implements IEmployeeState {
   public employees: IEmployee[] =  { ...employeesInitialState };
@@ -34,16 +34,16 @@ class Employee extends VuexModule implements IEmployeeState {
   public departmentObj: IDropdownOption = { ...departmentInitialState };
 
   @Action
-  public async DeleteEmployee(employee: IEmployee): Promise<any> {
-    await EmployeeApi.deleteEmployeeAsync(employee);
-  }
-
-  @Action
-  public async AddEmployee(employee: IEmployee): Promise<any> {
+  public async AddEmployee(employee: IEmployee): Promise<void> {
     await EmployeeApi.addEmployeeAsync(employee);
   }
 
-  @MutationAction<Partial<IEmployeeState>>({ mutate: ["activeEmployee", "departmentObj"] })
+  @Action
+  public async DeleteEmployee(employee: IEmployee): Promise<void> {
+    await EmployeeApi.deleteEmployeeAsync(employee);
+  }
+
+  @MutationAction<Partial<IEmployeeState>>({ mutate: ['activeEmployee', 'departmentObj'] })
   public async ResetActiveEmployeeFields(): Promise<Partial<IEmployeeState>> {
     return {
       activeEmployee: {
@@ -55,36 +55,29 @@ class Employee extends VuexModule implements IEmployeeState {
     };
   }
 
-  @MutationAction<Partial<IEmployeeState>>({ mutate: ["employees"] })
+  @MutationAction<Partial<IEmployeeState>>({ mutate: ['employees'] })
   public async GetAllEmployees(): Promise<Partial<IEmployeeState>> {
     try {
       const employees = await EmployeeApi.getAllEmployeesAsync();
-      return {
-        employees
-      };
+
+      return { employees };
     } catch (e) {
       return {
-        employees: {
-          ...employeesInitialState,
-        },
+        employees: { ...employeesInitialState },
       };
     }
   }
 
-  @MutationAction<Partial<IEmployeeState>>({ mutate: ["employees"] })
+  @MutationAction<Partial<IEmployeeState>>({ mutate: ['employees'] })
   public async GetEmployeeById(id: number | null = null): Promise<Partial<IEmployeeState>> {
     try {
       const employee = await EmployeeApi.getEmployeeByIdAsync(id);
       const employees = this.employees.splice(0, this.employees.length, employee || {});
 
-      return {
-        employees
-      };
+      return { employees };
     } catch (e) {
       return {
-        employees: {
-          ...employeesInitialState,
-        },
+        employees: { ...employeesInitialState },
       };
     }
   }

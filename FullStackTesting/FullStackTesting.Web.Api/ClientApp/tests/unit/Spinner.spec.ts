@@ -1,6 +1,6 @@
-import { shallowMount, ThisTypedShallowMountOptions } from '@vue/test-utils';
-import Spinner from '@/components/Spinner.vue';
 import '@testing-library/jest-dom';
+import { shallowMount, ThisTypedShallowMountOptions } from '@vue/test-utils';
+import { Spinner } from '@/components';
 
 /**
  * Component: Spinner.vue
@@ -27,7 +27,7 @@ describe("Spinner.vue", () => {
 
   it("should render properly", async () => {
     const wrapper = shallowMountSpinner();
-    expect(wrapper.find(spinnerParentElId).exists()).toBeTruthy();
+    expect(wrapper.find(spinnerParentElId).exists()).toBe(true);
   });
 
   it("when props.show is false v-show directive is functional and display style should render none", async () => {

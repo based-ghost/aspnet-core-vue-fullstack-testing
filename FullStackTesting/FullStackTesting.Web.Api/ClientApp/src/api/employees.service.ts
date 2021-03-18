@@ -22,12 +22,12 @@ class EmployeeService extends BaseService {
     return data;
   }
 
-  public async addEmployeeAsync(employee: IEmployee): Promise<any> {
+  public async addEmployeeAsync(employee: IEmployee): Promise<void> {
     const config: AxiosRequestConfig = { params: { id: employee.id } };
     await this.$http.post("AddEmployeeAsync", employee, config);
   }
 
-  public async deleteEmployeeAsync(employee: IEmployee): Promise<any> {
+  public async deleteEmployeeAsync(employee: IEmployee): Promise<void> {
     const config: AxiosRequestConfig = { params: { id: employee.id } };
     await this.$http.delete("DeleteEmployeeAsync", config);
   }

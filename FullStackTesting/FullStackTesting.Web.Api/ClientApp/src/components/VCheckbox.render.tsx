@@ -33,6 +33,6 @@ export default class VCheckBox extends Vue {
   }
 
   private handleOnChange(e: Event): void {
-    this.$emit("checked", !!(e.target as HTMLInputElement).checked);
+    this.$emit("checked", (e.target as HTMLInputElement).checked);
   }
 }

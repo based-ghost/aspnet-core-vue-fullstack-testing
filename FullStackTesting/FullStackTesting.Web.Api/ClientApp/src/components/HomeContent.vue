@@ -26,7 +26,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { npmLinksConfig } from '../config/constants';
+import { npmLinksConfig } from '../config';
 
 @Component
 export default class HomeContent extends Vue {

@@ -84,7 +84,7 @@ import { alertAxiosSuccess } from "../utils";
 import { IDropdownOption, IEmployee } from "../types";
 import VCheckbox from "./VCheckbox.render";
 import VDropdown from "./VDropdown.render";
-import { dropdownTestData, modalIDs } from "../config/constants";
+import { dropdownTestData, modalIDs } from "../config";
 import { EmployeeModule } from "../store/modules/employee.module";
 
 @Component({
@@ -129,39 +129,40 @@ export default class AddEmployee extends Vue {
   }
 
   get employeeIds(): number[] {
-    return EmployeeModule.employees.map((employee) => employee.id) || [];
+    return EmployeeModule.employees.map(({ id }) => id);
   }
 
-  public handleAddEmployee(): void {
+  public async handleAddEmployee(): Promise<void> {
     if (!this.firstName || !this.lastName) {
       this.invalidInputs = true;
       return;
     }
 
     this.invalidInputs = false;
-
     const newEmployeeId: number = this.getNewEmployeeId();
-    const addEmployee: IEmployee = {
-      id: newEmployeeId,
-      ...EmployeeModule.activeEmployee,
-    };
+    const addEmployee: IEmployee = { id: newEmployeeId, ...EmployeeModule.activeEmployee };
 
-    EmployeeModule.AddEmployee(addEmployee).then(() => {
-      this.handleCloseModal();
-      EmployeeModule.GetAllEmployees().then(() => {
-        setTimeout(() => this.$emit("employeeAdded", newEmployeeId), 250);
-        alertAxiosSuccess("Employee was added!", "Success", 400);
-      });
-    });
+    try {
+      await EmployeeModule.AddEmployee(addEmployee);
+      await this.handleCloseModal();
+      await EmployeeModule.GetAllEmployees();
+      setTimeout(() => this.$emit("employeeAdded", newEmployeeId), 250);
+      alertAxiosSuccess("Employee was added!", "Success", 400);
+    } catch (e) {
+      console.error(e);
+    }
   }
 
-  public handleCloseModal(): void {
-    EmployeeModule.ResetActiveEmployeeFields().then(() => {
+  public async handleCloseModal(): Promise<void> {
+    try {
+      await EmployeeModule.ResetActiveEmployeeFields();
       this.$modal.hide(this.modalIDs.ADD_EMPLOYEE);
-    });
+    } catch (e) {
+      console.error(e);
+    }
   }
 
-  public getNewEmployeeId(): number {
+  private getNewEmployeeId(): number {
     let newId;
 
     do {

@@ -74,9 +74,8 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { IEmployee } from "../types";
-import { modalIDs } from "../config/constants";
-import Spinner from "@/components/Spinner.vue";
-import AddEmployee from "@/components/AddEmployee.vue";
+import { modalIDs } from "../config";
+import { Spinner, AddEmployee } from "@/components";
 import { isArrayWithLength, alertAxiosSuccess } from "../utils";
 import { EmployeeModule } from "../store/modules/employee.module";
 
@@ -106,38 +105,34 @@ export default class Employees extends Vue {
     }
   }
 
-  public deleteEmployee(employee: IEmployee): void {
+  public async deleteEmployee(employee: IEmployee): Promise<void> {
     if (this.loading) return;
 
     this.loading = true;
 
-    EmployeeModule.DeleteEmployee(employee)
-      .then(() => {
-        EmployeeModule.GetAllEmployees()
-          .then(() => {
-            alertAxiosSuccess("Employee was deleted!", "Success", 400);
-          })
-          .finally(() => {
-            setTimeout(() => {
-              this.loading = false;
-            }, 50);
-          });
-      })
-      .catch(() => {
-        this.loading = false;
-      });
+    try {
+      await EmployeeModule.DeleteEmployee(employee);
+      await EmployeeModule.GetAllEmployees();
+      alertAxiosSuccess("Employee was deleted!", "Success", 400);
+      this.loadingComplete(50);
+    } catch (e) {
+      this.loadingComplete();
+      console.error(e);
+    }
   }
 
-  public handleGetEmployees(): void {
+  public async handleGetEmployees(): Promise<void> {
     if (this.loading) return;
 
     this.loading = true;
 
-    EmployeeModule.GetAllEmployees().then(() => {
-      setTimeout(() => {
-        this.loading = false;
-      }, 50);
-    });
+    try {
+      await EmployeeModule.GetAllEmployees();
+      this.loadingComplete(50);
+    } catch (e) {
+      this.loadingComplete();
+      console.error(e);
+    }
   }
 
   // Method that gets executed as callback from @employeeAdded event fired from child component AddEmployee.vue
@@ -147,11 +142,15 @@ export default class Employees extends Vue {
       const newEmployeeRow = document.getElementById(`row-${newEmployeeId}`);
       if (newEmployeeRow) {
         newEmployeeRow.classList.add("highlight-new-row");
-        setTimeout(() => {
-          newEmployeeRow.classList.remove("highlight-new-row");
-        }, 250);
+        setTimeout(() => newEmployeeRow.classList.remove("highlight-new-row"), 250);
       }
     });
+  }
+
+  private loadingComplete(delay: number = 0): void {
+    setTimeout(() => {
+      this.loading = false;
+    }, delay);
   }
 }
 </script>

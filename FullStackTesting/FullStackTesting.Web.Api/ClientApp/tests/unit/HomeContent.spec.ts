@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
-import HomeContent from '@/components/HomeContent.vue';
+import { HomeContent } from '@/components';
 
 /**
  * Component: HomeContent.vue
@@ -17,7 +17,7 @@ describe('HomeContent.vue', () => {
 
   it('should mount and render properly', async () => {
     expect(wrapper).toBeTruthy();
-    expect(wrapper.find('.home-content').exists()).toBeTruthy();
+    expect(wrapper.find('.home-content').exists()).toBe(true);
   });
 
   it('property "mainSubTitle" renders text value correctly', async () => {

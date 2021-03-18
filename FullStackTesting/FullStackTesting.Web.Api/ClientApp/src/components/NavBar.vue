@@ -1,5 +1,9 @@
 <template>
-  <nav id="nav" role="navigation" aria-label="main navigation">
+  <nav
+    id="nav"
+    role="navigation"
+    aria-label="main navigation"
+  >
     <router-link
       v-for="route in $router.options.routes"
       :key="route.path"

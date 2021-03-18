@@ -1,5 +1,5 @@
-import { shallowMount } from '@vue/test-utils';
-import VCheckbox from '@/components/VCheckbox.render';
+import { shallowMount, ThisTypedShallowMountOptions } from '@vue/test-utils';
+import { VCheckbox } from '@/components';
 
 /**
  * Component: VCheckbox.render.tsx
@@ -12,16 +12,18 @@ import VCheckbox from '@/components/VCheckbox.render';
 describe("VCheckbox.render.tsx", () => {
   const inputElQuery = 'input[type="checkbox"]';
 
-  const shallowMountVCheckbox = (options?: any) => {
+  const shallowMountVCheckbox = (
+    options?: ThisTypedShallowMountOptions<VCheckbox>
+  ) => {
     return shallowMount(VCheckbox, {
-      ...options
+      ...options,
     });
   };
 
-  it("should mount and render properly", () => {
+  it("should mount and render properly", async () => {
     const wrapper = shallowMountVCheckbox();
     expect(wrapper).toBeTruthy();
-    expect(wrapper.find(inputElQuery).exists()).toBeTruthy();
+    expect(wrapper.find(inputElQuery).exists()).toBe(true);
   });
 
   it("renders CSS properties when passed (props.wrapperClass, props.controlClass)", async () => {
@@ -34,7 +36,7 @@ describe("VCheckbox.render.tsx", () => {
     });
 
     expect(wrapper.classes()).toContain(className);
-    expect(wrapper.find(`p.${className}`).exists()).toBeTruthy();
+    expect(wrapper.find(`p.${className}`).exists()).toBe(true);
   });
 
   it("'disabled' attribute is rendered on input element when the 'disabled' prop is defined", async () => {
@@ -45,7 +47,7 @@ describe("VCheckbox.render.tsx", () => {
     });
 
     const inputEl = wrapper.find(inputElQuery).element;
-    expect(inputEl.hasAttribute('disabled')).toBeTruthy();
+    expect(inputEl.hasAttribute('disabled')).toBe(true);
   });
 
   it("emits the custom @checked event with new target value when the @change event is triggered", async () => {
@@ -61,7 +63,7 @@ describe("VCheckbox.render.tsx", () => {
     inputEl.checked = true;
     inputEl.value = inputEl.checked.toString();
 
-    inputNode.trigger("change");
+    await inputNode.trigger("change");
 
     expect(wrapper.emitted().checked).toBeTruthy();
   });

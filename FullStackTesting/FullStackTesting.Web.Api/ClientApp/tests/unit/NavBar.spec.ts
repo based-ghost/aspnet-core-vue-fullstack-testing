@@ -1,7 +1,7 @@
 import { shallowMount } from '@vue/test-utils';
-import router from "@/router";
+import router from '@/router';
 import { RouteConfig } from 'vue-router';
-import Navbar from '@/components/NavBar.vue';
+import { Navbar } from '@/components';
 
 /**
  * Component: NavBar.vue
@@ -20,7 +20,7 @@ describe("NavBar.vue", () => {
   it("should mount and render properly", async () => {
     const wrapper = shallowMountNavbar();
     expect(wrapper).toBeTruthy();
-    expect(wrapper.find(navbarParentElId).exists()).toBeTruthy();
+    expect(wrapper.find(navbarParentElId).exists()).toBe(true);
   });
 
   it("router-links should be rendered for each route defined in global $router.options.routes object", async () => {
@@ -28,7 +28,7 @@ describe("NavBar.vue", () => {
     const { routes } = wrapper.vm.$router.options;
 
     routes.forEach((route: RouteConfig) => {
-      expect(wrapper.find(`#${route.meta.id}`).exists()).toBeTruthy();
+      expect(wrapper.find(`#${route.meta.id}`).exists()).toBe(true);
     });
   });
 });
