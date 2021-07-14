@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign,import/no-extraneous-dependencies  */
 
 module.exports = {
-  configureWebpack: (config) => {
+  configureWebpack: () => {
     if (process.env.NODE_ENV !== 'production') {
       return {};
     }

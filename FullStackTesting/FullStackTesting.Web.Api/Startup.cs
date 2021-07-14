@@ -19,14 +19,14 @@ namespace FullStackTesting.Web.Api
         private readonly string _spaSourcePath;
         private readonly string _corsPolicyName;
 
+        public IConfiguration Configuration { get; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
             _spaSourcePath = Configuration.GetValue<string>("SPA:SourcePath");
             _corsPolicyName = Configuration.GetValue<string>("CORS:PolicyName");
         }
-
-        public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -42,14 +42,14 @@ namespace FullStackTesting.Web.Api
                     .AllowAnyHeader()
                     .AllowAnyMethod()));
 
-            // Register RazorPages/Controllers
-            services.AddControllers();
-
             // IMPORTANT CONFIG CHANGE IN 3.0 - 'Async' suffix in action names get stripped by default - so, to access them by full name with 'Async' part - opt out of this feature'.
             services.AddMvc(options => options.SuppressAsyncSuffixInActionNames = false);
 
             // In production, the Vue files will be served from this directory
-            services.AddSpaStaticFiles(configuration => configuration.RootPath = $"{_spaSourcePath}/dist");
+            services.AddSpaStaticFiles(opt => opt.RootPath = $"{_spaSourcePath}/dist");
+
+            // Register RazorPages/Controllers
+            services.AddControllers();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -84,27 +84,20 @@ namespace FullStackTesting.Web.Api
             app.UseCors(_corsPolicyName);
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
+            // app.UseStaticFiles();
             app.UseSpaStaticFiles();
             app.UseRouting();
 
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllers();
 
-                if (System.Diagnostics.Debugger.IsAttached)
-                {
-                    endpoints.MapToVueCliProxy(
-                       "{*path}",
-                       new SpaOptions { SourcePath = _spaSourcePath },
-                       npmScript: "serve",
-                       regex: "running at",
-                       forceKill: true
-                    );
-                }
-                else
-                {
-                    endpoints.MapFallbackToFile("index.html");
-                }
+                endpoints.MapToVueCliProxy(
+                   "{*path}",
+                   new SpaOptions { SourcePath = _spaSourcePath },
+                   npmScript: System.Diagnostics.Debugger.IsAttached ? "serve" : null,
+                   regex: "Compiled successfully",
+                   forceKill: true
+                );
             });
         }
     }

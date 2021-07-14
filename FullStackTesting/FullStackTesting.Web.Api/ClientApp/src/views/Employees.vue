@@ -106,7 +106,9 @@ export default class Employees extends Vue {
   }
 
   public async deleteEmployee(employee: IEmployee): Promise<void> {
-    if (this.loading) return;
+    if (this.loading) {
+      return;
+    }
 
     this.loading = true;
 
@@ -122,7 +124,9 @@ export default class Employees extends Vue {
   }
 
   public async handleGetEmployees(): Promise<void> {
-    if (this.loading) return;
+    if (this.loading) {
+      return;
+    }
 
     this.loading = true;
 
